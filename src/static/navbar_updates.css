@@ -1,0 +1,234 @@
+/* ============================================
+   تحديثات شريط التنقل والقائمة المنسدلة الاحترافية
+   ============================================ */
+
+:root {
+    --dropdown-bg: #ffffff;
+    --dropdown-shadow: 0 10px 25px rgba(20, 52, 100, 0.15);
+    --dropdown-item-hover: #f0f7ff;
+    --nav-item-spacing: 25px;
+}
+
+/* تحسين شريط التنقل */
+.nav-menu {
+    gap: var(--nav-item-spacing) !important;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600 !important;
+    padding: 10px 15px !important;
+    border-radius: 8px;
+    transition: all 0.3s ease !important;
+}
+
+.nav-link i {
+    font-size: 1.1rem;
+    color: var(--primary-light);
+}
+
+.nav-link:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color) !important;
+}
+
+.nav-link.active {
+    background-color: var(--primary-color);
+    color: white !important;
+}
+
+.nav-link.active i {
+    color: white;
+}
+
+/* تنسيق القائمة المنسدلة */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--dropdown-bg);
+    min-width: 220px;
+    box-shadow: var(--dropdown-shadow);
+    border-radius: 12px;
+    z-index: 1001;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    margin-top: 10px;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.dropdown-item {
+    color: var(--text-primary);
+    padding: 12px 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: background-color 0.2s ease;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item i {
+    width: 20px;
+    text-align: center;
+    color: var(--primary-light);
+    font-size: 1rem;
+}
+
+.dropdown-item:hover {
+    background-color: var(--dropdown-item-hover);
+    color: var(--primary-color);
+}
+
+.dropdown-item:hover i {
+    color: var(--primary-color);
+}
+
+/* سهم القائمة المنسدلة */
+.nav-link .fa-chevron-down {
+    font-size: 0.7rem;
+    margin-right: 5px;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* تحسين زر تسجيل الخروج */
+#logout-btn {
+    background-color: #fff0f0;
+    color: var(--danger-color) !important;
+}
+
+#logout-btn:hover {
+    background-color: var(--danger-color);
+    color: white !important;
+}
+
+#logout-btn i {
+    color: var(--danger-color);
+}
+
+#logout-btn:hover i {
+    color: white;
+}
+
+/* تحسين بطاقات الخدمات في لوحة التحكم */
+.service-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+.service-link-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(20, 52, 100, 0.04);
+}
+
+.service-link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(20, 52, 100, 0.1);
+    border-color: var(--primary-lighter);
+    background: linear-gradient(to bottom, #ffffff, #f8fbff);
+}
+
+.icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background-color: var(--secondary-color);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.service-link-card i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.service-link-card:hover .icon-wrapper {
+    background-color: var(--primary-color);
+    transform: rotate(5deg);
+}
+
+.service-link-card:hover i {
+    color: white;
+}
+
+.service-link-card span {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+/* تحسينات إضافية للهاتف المحمول */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        flex-direction: column;
+        background-color: white;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        padding: 20px 0;
+        gap: 10px !important;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .dropdown-content {
+        position: static;
+        display: none;
+        box-shadow: none;
+        border: none;
+        background-color: #f9f9f9;
+        width: 100%;
+        opacity: 1;
+        transform: none;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+}

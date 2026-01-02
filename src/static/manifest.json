@@ -1,0 +1,125 @@
+{
+  "name": "منصة Elumia الطبية",
+  "short_name": "Elumia",
+  "description": "منصة طبية متكاملة للاستشارات الطبية عن بُعد",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/static/images/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/static/images/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/static/images/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/static/images/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/static/images/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/static/images/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/static/images/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/static/images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["medical", "health", "productivity"],
+  "screenshots": [
+    {
+      "src": "/static/images/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/static/images/screenshot-narrow.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "حجز استشارة",
+      "short_name": "حجز",
+      "description": "حجز استشارة طبية جديدة",
+      "url": "/doctors",
+      "icons": [
+        {
+          "src": "/static/images/shortcut-booking.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "استشاراتي",
+      "short_name": "استشارات",
+      "description": "عرض الاستشارات الخاصة بي",
+      "url": "/my-consultations",
+      "icons": [
+        {
+          "src": "/static/images/shortcut-consultations.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "لوحة التحكم",
+      "short_name": "إدارة",
+      "description": "لوحة التحكم الإدارية",
+      "url": "/admin",
+      "icons": [
+        {
+          "src": "/static/images/shortcut-admin.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
+}
+

@@ -1,0 +1,46 @@
+/* 
+ * physician-report-management.css - أنماط خاصة بصفحة إدارة تقارير الأطباء
+ * تم إنشاؤها لتتوافق مع نظام التصميم الاحترافي الجديد (styles.css)
+ */
+
+/* الاعتماد على الأنماط العامة من styles.css */
+@import url('styles.css');
+
+/* --- تخطيط الصفحة الرئيسي --- */
+.dashboard-content {
+    padding: var(--spacing-xl) 0 var(--spacing-xxl);
+}
+
+/* الشبكة الرئيسية لصفحة إدارة تقارير الأطباء */
+.report-management-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* لوحة طلب التقرير (1) ولوحة البحث (1) */
+    gap: var(--spacing-xl);
+}
+
+/* --- أنماط لوحات الأقسام (Panels) --- */
+.request-report-panel,
+.search-report-panel {
+    /* تعتمد على أنماط .panel العامة */
+}
+
+/* --- التجاوبية (Responsive) --- */
+@media (max-width: 1200px) {
+    .report-management-grid {
+        grid-template-columns: 1fr; /* عمود واحد على الشاشات الأصغر */
+    }
+}
+
+@media (max-width: 768px) {
+    .search-report-panel form,
+    .request-report-panel form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .search-report-panel .form-group,
+    .request-report-panel .form-group {
+        margin-bottom: 0;
+    }
+}

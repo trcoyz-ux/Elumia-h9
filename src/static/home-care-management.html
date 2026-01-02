@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الرعاية المنزلية - Elumia-H9</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navbar_updates.css">
+    <link rel="stylesheet" href="home-care-management.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- شريط التنقل الموحد -->
+    <header class="header" id="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-logo">
+                    <img src="images/new_logo_blue.png" alt="Elumia Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>Elumia-h9</h1>
+                    </div>
+                </div>
+                                <ul class="nav-menu" id="main-nav-menu">
+                    <li><a href="dashboard.html" class="nav-link"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="medical-records.html" class="nav-link"><i class="fas fa-file-medical"></i> السجلات الطبية</a></li>
+                    <li><a href="ai-report-management.html" class="nav-link"><i class="fas fa-robot"></i> تحليل الذكاء الاصطناعي</a></li>
+                    <li><a href="doctor-selection.html" class="nav-link"><i class="fas fa-user-md"></i> اختيار طبيب</a></li>
+                    <li class="dropdown">
+                        <a href="physician-report-management.html" class="nav-link">
+                            <i class="fas fa-file-alt"></i> تقرير الاطباء <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="appointments.html" class="dropdown-item"><i class="fas fa-calendar-check"></i> إدارة المواعيد</a>
+                            <a href="departments_management.html" class="dropdown-item"><i class="fas fa-hospital"></i> إدارة الأقسام</a>
+                            <a href="patients_management.html" class="dropdown-item"><i class="fas fa-users"></i> إدارة المرضى</a>
+                            <a href="doctors_management.html" class="dropdown-item"><i class="fas fa-user-tie"></i> إدارة الأطباء</a>
+                        </div>
+                    </li>
+                    <li><a href="pharmacy-management.html" class="nav-link"><i class="fas fa-pills"></i> ادارة الصيدلية</a></li>
+                    <li><a href="home-care-management.html" class="nav-link active"><i class="fas fa-house-medical"></i> الرعاية المنزلية</a></li>
+                    <li><a href="index.html" class="nav-link" id="logout-btn"><i class="fas fa-sign-out-alt"></i> خروج</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="dashboard-content">
+                
+                <!-- قسم الترحيب والعنوان -->
+                <section class="dashboard-header-section">
+                    <div class="welcome-box">
+                        <h1>إدارة خدمات الرعاية المنزلية</h1>
+                        <p>طلب وتتبع خدمات الرعاية الصحية المتخصصة في راحة منزلك.</p>
+                    </div>
+                </section>
+
+                <!-- المحتوى الرئيسي: نموذج الطلب والبحث -->
+                <div class="home-care-management-grid">
+                    
+                    <!-- 1. طلب خدمة رعاية منزلية -->
+                    <div class="panel request-service-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-calendar-check"></i> طلب خدمة جديدة</h3>
+                        </div>
+                        <p class="panel-description">يرجى ملء التفاصيل لطلب خدمة رعاية منزلية (تمريض، فحوصات، علاج طبيعي، زيارة طبيب).</p>
+                        <form id="requestHomeCareForm">
+                            <div class="form-group">
+                                <label for="patientName">
+                                    <i class="fas fa-user"></i>
+                                    اسم المريض:
+                                </label>
+                                <input type="text" id="patientName" name="patientName" required placeholder="أدخل اسم المريض">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="patientAddress">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    عنوان المريض:
+                                </label>
+                                <input type="text" id="patientAddress" name="patientAddress" required placeholder="أدخل العنوان بالتفصيل">
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="serviceType">
+                                    <i class="fas fa-list"></i>
+                                    نوع الخدمة المطلوبة:
+                                </label>
+                                <select id="serviceType" name="serviceType" required>
+                                    <option value="">اختر نوع الخدمة</option>
+                                    <option value="general_care">رعاية تمريضية عامة</option>
+                                    <option value="medical_tests">أخذ فحوصات طبية (سحب عينات)</option>
+                                    <option value="physiotherapy">علاج طبيعي منزلي</option>
+                                    <option value="doctor_visit">زيارة طبيب عام</option>
+                                </select>
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="testDetails">
+                                    <i class="fas fa-file-alt"></i>
+                                    تفاصيل إضافية:
+                                </label>
+                                <textarea id="testDetails" name="testDetails" rows="3" placeholder="اذكر أي تفاصيل إضافية عن الحالة أو الفحوصات المطلوبة"></textarea>
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="preferredDate">
+                                    <i class="fas fa-calendar"></i>
+                                    التاريخ المفضل:
+                                </label>
+                                <input type="date" id="preferredDate" name="preferredDate" required>
+                            </div>
+        
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-check-circle"></i>
+                                تأكيد طلب الخدمة
+                            </button>
+                            <p id="requestMessage" class="message-area"></p>
+                        </form>
+                    </div>
+
+                    <!-- 2. البحث في الطلبات ونتائج البحث -->
+                    <div class="panel search-results-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-search"></i> سجل طلبات الرعاية المنزلية</h3>
+                        </div>
+                        <form id="searchHomeCareForm">
+                            <div class="form-group">
+                                <label for="searchPatientName">
+                                    <i class="fas fa-user"></i>
+                                    اسم المريض أو جزء منه:
+                                </label>
+                                <input type="text" id="searchPatientName" name="searchPatientName" required placeholder="أدخل اسم المريض للبحث">
+                            </div>
+        
+                            <button type="submit" class="btn btn-secondary">
+                                <i class="fas fa-search"></i>
+                                بحث
+                            </button>
+                            <p id="searchMessage" class="message-area"></p>
+                        </form>
+        
+                        <!-- نتائج البحث -->
+                        <div id="searchResults" class="search-results-container" style="display: block;">
+                            <div class="panel-header">
+                                <h4>آخر الطلبات:</h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="records-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>معرف الطلب</th>
+                                            <th>اسم المريض</th>
+                                            <th>نوع الخدمة</th>
+                                            <th>التاريخ المفضل</th>
+                                            <th>الحالة</th>
+                                            <th>الإجراء</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="requestsTableBody">
+                                        <!-- بيانات وهمية للتصميم -->
+                                        <tr>
+                                            <td>1</td>
+                                            <td>HC-00101</td>
+                                            <td>سارة أحمد</td>
+                                            <td>رعاية تمريضية عامة</td>
+                                            <td>2025-12-15</td>
+                                            <td><span class="status-badge status-confirmed">مؤكد</span></td>
+                                            <td><a href="#" class="btn-small btn-info"><i class="fas fa-eye"></i> عرض</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>HC-00102</td>
+                                            <td>خالد محمد</td>
+                                            <td>أخذ فحوصات طبية</td>
+                                            <td>2025-12-16</td>
+                                            <td><span class="status-badge status-pending">قيد المراجعة</span></td>
+                                            <td><a href="#" class="btn-small btn-warning"><i class="fas fa-sync-alt"></i> تحديث</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>HC-00103</td>
+                                            <td>فاطمة علي</td>
+                                            <td>علاج طبيعي منزلي</td>
+                                            <td>2025-12-14</td>
+                                            <td><span class="status-badge status-cancelled">ملغي</span></td>
+                                            <td><a href="#" class="btn-small btn-danger"><i class="fas fa-trash"></i> حذف</a></td>
+                                        </tr>
+                                        <!-- سيتم ملء هذا بواسطة JavaScript فعلياً -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ربط ملف JavaScript -->
+    <script src="script.js"></script>
+    <script src="home-care-management.js"></script>
+</body>
+</html>

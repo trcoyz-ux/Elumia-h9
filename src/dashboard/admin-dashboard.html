@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم الإدارية - المنصة الطبية</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../images/elumia_logo.jpg" alt="المنصة الطبية">
+                    <h2>لوحة التحكم</h2>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active">
+                        <a href="#dashboard" onclick="showSection('dashboard')">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>الرئيسية</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#users" onclick="showSection('users')">
+                            <i class="fas fa-users"></i>
+                            <span>المستخدمين</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#doctors" onclick="showSection('doctors')">
+                            <i class="fas fa-user-md"></i>
+                            <span>الأطباء</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#consultations" onclick="showSection('consultations')">
+                            <i class="fas fa-stethoscope"></i>
+                            <span>الاستشارات</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#appointments" onclick="showSection('appointments')">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>المواعيد</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#payments" onclick="showSection('payments')">
+                            <i class="fas fa-credit-card"></i>
+                            <span>المدفوعات</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#reviews" onclick="showSection('reviews')">
+                            <i class="fas fa-star"></i>
+                            <span>التقييمات</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#notifications" onclick="showSection('notifications')">
+                            <i class="fas fa-bell"></i>
+                            <span>الإشعارات</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#analytics" onclick="showSection('analytics')">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>التحليلات</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#ai-services" onclick="showSection('ai-services')">
+                            <i class="fas fa-brain"></i>
+                            <span>خدمات الذكاء الاصطناعي</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#settings" onclick="showSection('settings')">
+                            <i class="fas fa-cog"></i>
+                            <span>الإعدادات</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="admin-profile">
+                    <img src="../images/admin-avatar.jpg" alt="المدير" onerror="this.src='../images/doctor-placeholder.jpg'">
+                    <div class="admin-info">
+                        <span class="admin-name">أحمد المدير</span>
+                        <span class="admin-role">مدير النظام</span>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    تسجيل الخروج
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 id="pageTitle">لوحة التحكم الرئيسية</h1>
+                </div>
+                
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="البحث...">
+                    </div>
+                    
+                    <div class="header-actions">
+                        <button class="action-btn" onclick="showNotifications()">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">3</span>
+                        </button>
+                        
+                        <button class="action-btn" onclick="showMessages()">
+                            <i class="fas fa-envelope"></i>
+                            <span class="badge">7</span>
+                        </button>
+                        
+                        <div class="user-menu">
+                            <button class="user-btn" onclick="toggleUserMenu()">
+                                <img src="../images/admin-avatar.jpg" alt="المدير" onerror="this.src='../images/doctor-placeholder.jpg'">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="user-dropdown">
+                                <a href="#profile"><i class="fas fa-user"></i> الملف الشخصي</a>
+                                <a href="#settings"><i class="fas fa-cog"></i> الإعدادات</a>
+                                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Sections -->
+            <div class="content-wrapper">
+                <!-- Dashboard Section -->
+                <section id="dashboard-section" class="content-section active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalUsers">1,234</h3>
+                                <p>إجمالي المستخدمين</p>
+                                <span class="stat-change positive">+12%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalDoctors">89</h3>
+                                <p>الأطباء المسجلين</p>
+                                <span class="stat-change positive">+5%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-stethoscope"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalConsultations">2,567</h3>
+                                <p>الاستشارات المكتملة</p>
+                                <span class="stat-change positive">+18%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalRevenue">125,430</h3>
+                                <p>الإيرادات (ريال)</p>
+                                <span class="stat-change positive">+22%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="charts-grid">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>الاستشارات الشهرية</h3>
+                                <div class="chart-controls">
+                                    <select id="consultationsPeriod">
+                                        <option value="6">آخر 6 أشهر</option>
+                                        <option value="12">آخر سنة</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <canvas id="consultationsChart"></canvas>
+                        </div>
+                        
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>توزيع الاستشارات حسب النوع</h3>
+                            </div>
+                            <canvas id="consultationTypesChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="recent-activities">
+                        <div class="activity-card">
+                            <h3>النشاطات الأخيرة</h3>
+                            <div class="activity-list" id="recentActivities">
+                                <!-- Activities will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="quick-actions">
+                            <h3>إجراءات سريعة</h3>
+                            <div class="actions-grid">
+                                <button class="action-card" onclick="showSection('doctors')">
+                                    <i class="fas fa-user-plus"></i>
+                                    <span>إضافة طبيب جديد</span>
+                                </button>
+                                <button class="action-card" onclick="showSection('notifications')">
+                                    <i class="fas fa-bell"></i>
+                                    <span>إرسال إشعار</span>
+                                </button>
+                                <button class="action-card" onclick="generateReport()">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>إنشاء تقرير</span>
+                                </button>
+                                <button class="action-card" onclick="showSection('settings')">
+                                    <i class="fas fa-cog"></i>
+                                    <span>إعدادات النظام</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Users Section -->
+                <section id="users-section" class="content-section">
+                    <div class="section-header">
+                        <h2>إدارة المستخدمين</h2>
+                        <div class="section-actions">
+                            <button class="btn-primary" onclick="addUser()">
+                                <i class="fas fa-plus"></i>
+                                إضافة مستخدم
+                            </button>
+                            <button class="btn-secondary" onclick="exportUsers()">
+                                <i class="fas fa-download"></i>
+                                تصدير
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="filters-bar">
+                        <div class="filter-group">
+                            <select id="userTypeFilter">
+                                <option value="">جميع الأنواع</option>
+                                <option value="patient">مريض</option>
+                                <option value="doctor">طبيب</option>
+                                <option value="admin">مدير</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <select id="userStatusFilter">
+                                <option value="">جميع الحالات</option>
+                                <option value="active">نشط</option>
+                                <option value="inactive">غير نشط</option>
+                                <option value="suspended">موقوف</option>
+                            </select>
+                        </div>
+                        <div class="search-filter">
+                            <input type="text" id="userSearch" placeholder="البحث عن مستخدم...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="data-table-container">
+                        <table class="data-table" id="usersTable">
+                            <thead>
+                                <tr>
+                                    <th>الاسم</th>
+                                    <th>البريد الإلكتروني</th>
+                                    <th>النوع</th>
+                                    <th>الحالة</th>
+                                    <th>تاريخ التسجيل</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Users data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="pagination">
+                        <button class="page-btn" onclick="previousPage('users')">السابق</button>
+                        <span class="page-info">صفحة 1 من 10</span>
+                        <button class="page-btn" onclick="nextPage('users')">التالي</button>
+                    </div>
+                </section>
+
+                <!-- Doctors Section -->
+                <section id="doctors-section" class="content-section">
+                    <div class="section-header">
+                        <h2>إدارة الأطباء</h2>
+                        <div class="section-actions">
+                            <button class="btn-primary" onclick="addDoctor()">
+                                <i class="fas fa-plus"></i>
+                                إضافة طبيب
+                            </button>
+                            <button class="btn-secondary" onclick="verifyDoctors()">
+                                <i class="fas fa-check-circle"></i>
+                                التحقق من التراخيص
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="doctors-stats">
+                        <div class="stat-mini">
+                            <span class="stat-number">89</span>
+                            <span class="stat-label">إجمالي الأطباء</span>
+                        </div>
+                        <div class="stat-mini">
+                            <span class="stat-number">76</span>
+                            <span class="stat-label">مُتحقق منهم</span>
+                        </div>
+                        <div class="stat-mini">
+                            <span class="stat-number">13</span>
+                            <span class="stat-label">في انتظار التحقق</span>
+                        </div>
+                        <div class="stat-mini">
+                            <span class="stat-number">45</span>
+                            <span class="stat-label">نشط حالياً</span>
+                        </div>
+                    </div>
+                    
+                    <div class="filters-bar">
+                        <div class="filter-group">
+                            <select id="doctorSpecializationFilter">
+                                <option value="">جميع التخصصات</option>
+                                <option value="cardiology">أمراض القلب</option>
+                                <option value="dermatology">الأمراض الجلدية</option>
+                                <option value="neurology">الأمراض العصبية</option>
+                                <option value="pediatrics">طب الأطفال</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <select id="doctorStatusFilter">
+                                <option value="">جميع الحالات</option>
+                                <option value="verified">مُتحقق</option>
+                                <option value="pending">في انتظار التحقق</option>
+                                <option value="rejected">مرفوض</option>
+                            </select>
+                        </div>
+                        <div class="search-filter">
+                            <input type="text" id="doctorSearch" placeholder="البحث عن طبيب...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="data-table-container">
+                        <table class="data-table" id="doctorsTable">
+                            <thead>
+                                <tr>
+                                    <th>الطبيب</th>
+                                    <th>التخصص</th>
+                                    <th>الخبرة</th>
+                                    <th>التقييم</th>
+                                    <th>حالة الترخيص</th>
+                                    <th>الاستشارات</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Doctors data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Consultations Section -->
+                <section id="consultations-section" class="content-section">
+                    <div class="section-header">
+                        <h2>إدارة الاستشارات</h2>
+                        <div class="section-actions">
+                            <button class="btn-secondary" onclick="exportConsultations()">
+                                <i class="fas fa-download"></i>
+                                تصدير التقرير
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="consultations-stats">
+                        <div class="stat-mini">
+                            <span class="stat-number">2,567</span>
+                            <span class="stat-label">إجمالي الاستشارات</span>
+                        </div>
+                        <div class="stat-mini">
+                            <span class="stat-number">2,234</span>
+                            <span class="stat-label">مكتملة</span>
+                        </div>
+                        <div class="stat-mini">
+                            <span class="stat-number">156</span>
+                            <span class="stat-label">جارية</span>
+                        </div>
+                        <div class="stat-mini">
+                            <span class="stat-number">177</span>
+                            <span class="stat-label">ملغية</span>
+                        </div>
+                    </div>
+                    
+                    <div class="filters-bar">
+                        <div class="filter-group">
+                            <select id="consultationStatusFilter">
+                                <option value="">جميع الحالات</option>
+                                <option value="pending">في انتظار</option>
+                                <option value="ongoing">جارية</option>
+                                <option value="completed">مكتملة</option>
+                                <option value="cancelled">ملغية</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <select id="consultationTypeFilter">
+                                <option value="">جميع الأنواع</option>
+                                <option value="video">مرئية</option>
+                                <option value="audio">صوتية</option>
+                                <option value="text">نصية</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <input type="date" id="consultationDateFilter">
+                        </div>
+                        <div class="search-filter">
+                            <input type="text" id="consultationSearch" placeholder="البحث في الاستشارات...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="data-table-container">
+                        <table class="data-table" id="consultationsTable">
+                            <thead>
+                                <tr>
+                                    <th>رقم الاستشارة</th>
+                                    <th>المريض</th>
+                                    <th>الطبيب</th>
+                                    <th>النوع</th>
+                                    <th>الحالة</th>
+                                    <th>التاريخ</th>
+                                    <th>المبلغ</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Consultations data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- AI Services Section -->
+                <section id="ai-services-section" class="content-section">
+                    <div class="section-header">
+                        <h2>خدمات الذكاء الاصطناعي</h2>
+                        <div class="section-actions">
+                            <button class="btn-primary" onclick="trainModel()">
+                                <i class="fas fa-brain"></i>
+                                تدريب النموذج
+                            </button>
+                            <button class="btn-secondary" onclick="testAI()">
+                                <i class="fas fa-flask"></i>
+                                اختبار النظام
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-services-grid">
+                        <div class="ai-service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3>تحليل الصور الطبية</h3>
+                                <p>تحليل الأشعة والصور الطبية باستخدام الذكاء الاصطناعي</p>
+                                <div class="service-stats">
+                                    <span>1,234 صورة محللة</span>
+                                    <span class="accuracy">دقة 94.5%</span>
+                                </div>
+                            </div>
+                            <div class="service-actions">
+                                <button class="btn-outline" onclick="configureImageAnalysis()">إعداد</button>
+                                <button class="btn-primary" onclick="testImageAnalysis()">اختبار</button>
+                            </div>
+                        </div>
+                        
+                        <div class="ai-service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3>المساعد الذكي</h3>
+                                <p>مساعد ذكي للإجابة على استفسارات المرضى</p>
+                                <div class="service-stats">
+                                    <span>5,678 استفسار</span>
+                                    <span class="accuracy">رضا 89%</span>
+                                </div>
+                            </div>
+                            <div class="service-actions">
+                                <button class="btn-outline" onclick="configureChatbot()">إعداد</button>
+                                <button class="btn-primary" onclick="testChatbot()">اختبار</button>
+                            </div>
+                        </div>
+                        
+                        <div class="ai-service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3>التنبؤ بالأمراض</h3>
+                                <p>نظام التنبؤ المبكر بالأمراض المحتملة</p>
+                                <div class="service-stats">
+                                    <span>892 تنبؤ</span>
+                                    <span class="accuracy">دقة 87.2%</span>
+                                </div>
+                            </div>
+                            <div class="service-actions">
+                                <button class="btn-outline" onclick="configurePrediction()">إعداد</button>
+                                <button class="btn-primary" onclick="testPrediction()">اختبار</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-analytics">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>استخدام خدمات الذكاء الاصطناعي</h3>
+                            </div>
+                            <canvas id="aiUsageChart"></canvas>
+                        </div>
+                        
+                        <div class="ai-logs">
+                            <h3>سجل العمليات</h3>
+                            <div class="logs-container" id="aiLogs">
+                                <!-- AI logs will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Analytics Section -->
+                <section id="analytics-section" class="content-section">
+                    <div class="section-header">
+                        <h2>التحليلات والتقارير</h2>
+                        <div class="section-actions">
+                            <button class="btn-primary" onclick="generateCustomReport()">
+                                <i class="fas fa-chart-bar"></i>
+                                تقرير مخصص
+                            </button>
+                            <button class="btn-secondary" onclick="scheduleReport()">
+                                <i class="fas fa-clock"></i>
+                                جدولة تقرير
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-controls">
+                        <div class="date-range-picker">
+                            <label>الفترة الزمنية:</label>
+                            <input type="date" id="analyticsStartDate">
+                            <span>إلى</span>
+                            <input type="date" id="analyticsEndDate">
+                            <button class="btn-outline" onclick="updateAnalytics()">تحديث</button>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-grid">
+                        <div class="chart-card large">
+                            <div class="chart-header">
+                                <h3>الإيرادات الشهرية</h3>
+                                <div class="chart-controls">
+                                    <select id="revenueChartType">
+                                        <option value="line">خط</option>
+                                        <option value="bar">أعمدة</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                        
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>أداء الأطباء</h3>
+                            </div>
+                            <canvas id="doctorPerformanceChart"></canvas>
+                        </div>
+                        
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>رضا العملاء</h3>
+                            </div>
+                            <canvas id="satisfactionChart"></canvas>
+                        </div>
+                        
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>التوزيع الجغرافي</h3>
+                            </div>
+                            <div id="geographicChart" class="geographic-chart">
+                                <!-- Geographic distribution will be shown here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-dashboard">
+                        <h3>مؤشرات الأداء الرئيسية</h3>
+                        <div class="kpi-grid">
+                            <div class="kpi-card">
+                                <div class="kpi-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="kpi-info">
+                                    <span class="kpi-value">85.2%</span>
+                                    <span class="kpi-label">معدل الاحتفاظ بالعملاء</span>
+                                    <span class="kpi-change positive">+3.2%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="kpi-card">
+                                <div class="kpi-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="kpi-info">
+                                    <span class="kpi-value">12.5 دقيقة</span>
+                                    <span class="kpi-label">متوسط وقت الاستجابة</span>
+                                    <span class="kpi-change negative">+1.2 دقيقة</span>
+                                </div>
+                            </div>
+                            
+                            <div class="kpi-card">
+                                <div class="kpi-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="kpi-info">
+                                    <span class="kpi-value">4.7/5</span>
+                                    <span class="kpi-label">متوسط التقييم</span>
+                                    <span class="kpi-change positive">+0.1</span>
+                                </div>
+                            </div>
+                            
+                            <div class="kpi-card">
+                                <div class="kpi-icon">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                                <div class="kpi-info">
+                                    <span class="kpi-value">92.8%</span>
+                                    <span class="kpi-label">معدل إكمال الاستشارات</span>
+                                    <span class="kpi-change positive">+2.1%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings-section" class="content-section">
+                    <div class="section-header">
+                        <h2>إعدادات النظام</h2>
+                        <div class="section-actions">
+                            <button class="btn-primary" onclick="saveSettings()">
+                                <i class="fas fa-save"></i>
+                                حفظ الإعدادات
+                            </button>
+                            <button class="btn-secondary" onclick="resetSettings()">
+                                <i class="fas fa-undo"></i>
+                                إعادة تعيين
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-tabs">
+                        <button class="tab-btn active" onclick="showSettingsTab('general')">عام</button>
+                        <button class="tab-btn" onclick="showSettingsTab('notifications')">الإشعارات</button>
+                        <button class="tab-btn" onclick="showSettingsTab('payments')">المدفوعات</button>
+                        <button class="tab-btn" onclick="showSettingsTab('security')">الأمان</button>
+                        <button class="tab-btn" onclick="showSettingsTab('ai')">الذكاء الاصطناعي</button>
+                    </div>
+                    
+                    <div class="settings-content">
+                        <div id="general-settings" class="settings-tab active">
+                            <div class="settings-group">
+                                <h3>الإعدادات العامة</h3>
+                                <div class="setting-item">
+                                    <label>اسم المنصة</label>
+                                    <input type="text" value="المنصة الطبية" id="platformName">
+                                </div>
+                                <div class="setting-item">
+                                    <label>البريد الإلكتروني للدعم</label>
+                                    <input type="email" value="support@medical-platform.com" id="supportEmail">
+                                </div>
+                                <div class="setting-item">
+                                    <label>رقم الدعم</label>
+                                    <input type="tel" value="+966501234567" id="supportPhone">
+                                </div>
+                                <div class="setting-item">
+                                    <label>المنطقة الزمنية</label>
+                                    <select id="timezone">
+                                        <option value="Asia/Riyadh">الرياض (GMT+3)</option>
+                                        <option value="Asia/Dubai">دبي (GMT+4)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="notifications-settings" class="settings-tab">
+                            <div class="settings-group">
+                                <h3>إعدادات الإشعارات</h3>
+                                <div class="setting-item">
+                                    <label class="switch-label">
+                                        <input type="checkbox" checked>
+                                        <span class="switch"></span>
+                                        إشعارات البريد الإلكتروني
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label class="switch-label">
+                                        <input type="checkbox" checked>
+                                        <span class="switch"></span>
+                                        إشعارات الهاتف المحمول
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>مفتاح Firebase</label>
+                                    <input type="text" placeholder="أدخل مفتاح Firebase" id="firebaseKey">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="payments-settings" class="settings-tab">
+                            <div class="settings-group">
+                                <h3>إعدادات المدفوعات</h3>
+                                <div class="setting-item">
+                                    <label>عمولة المنصة (%)</label>
+                                    <input type="number" value="10" min="0" max="50" id="platformCommission">
+                                </div>
+                                <div class="setting-item">
+                                    <label class="switch-label">
+                                        <input type="checkbox" checked>
+                                        <span class="switch"></span>
+                                        قبول بطاقات الائتمان
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label class="switch-label">
+                                        <input type="checkbox" checked>
+                                        <span class="switch"></span>
+                                        قبول التحويل البنكي
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="security-settings" class="settings-tab">
+                            <div class="settings-group">
+                                <h3>إعدادات الأمان</h3>
+                                <div class="setting-item">
+                                    <label class="switch-label">
+                                        <input type="checkbox" checked>
+                                        <span class="switch"></span>
+                                        المصادقة الثنائية
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>مدة انتهاء الجلسة (دقيقة)</label>
+                                    <input type="number" value="30" min="5" max="120" id="sessionTimeout">
+                                </div>
+                                <div class="setting-item">
+                                    <label>الحد الأقصى لمحاولات تسجيل الدخول</label>
+                                    <input type="number" value="5" min="3" max="10" id="maxLoginAttempts">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="ai-settings" class="settings-tab">
+                            <div class="settings-group">
+                                <h3>إعدادات الذكاء الاصطناعي</h3>
+                                <div class="setting-item">
+                                    <label class="switch-label">
+                                        <input type="checkbox" checked>
+                                        <span class="switch"></span>
+                                        تفعيل تحليل الصور الطبية
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label class="switch-label">
+                                        <input type="checkbox" checked>
+                                        <span class="switch"></span>
+                                        تفعيل المساعد الذكي
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>مفتاح Hugging Face API</label>
+                                    <input type="text" placeholder="أدخل مفتاح API" id="huggingFaceKey">
+                                </div>
+                                <div class="setting-item">
+                                    <label>نموذج تحليل الصور</label>
+                                    <select id="imageAnalysisModel">
+                                        <option value="resnet50">ResNet-50</option>
+                                        <option value="vgg16">VGG-16</option>
+                                        <option value="inception">Inception-v3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="userModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="userModalTitle">إضافة مستخدم جديد</h3>
+                <button class="close-btn" onclick="closeModal('userModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="userForm">
+                    <div class="form-group">
+                        <label>الاسم الكامل</label>
+                        <input type="text" id="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>البريد الإلكتروني</label>
+                        <input type="email" id="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>نوع المستخدم</label>
+                        <select id="userType" required>
+                            <option value="patient">مريض</option>
+                            <option value="doctor">طبيب</option>
+                            <option value="admin">مدير</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>كلمة المرور</label>
+                        <input type="password" id="userPassword" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('userModal')">إلغاء</button>
+                <button class="btn-primary" onclick="saveUser()">حفظ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>
+

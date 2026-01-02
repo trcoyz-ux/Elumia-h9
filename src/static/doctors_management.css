@@ -1,0 +1,71 @@
+/* 
+ * doctors_management.css - أنماط خاصة بصفحة إدارة الأطباء
+ * تم إنشاؤها لتتوافق مع نظام التصميم الاحترافي الجديد (styles.css)
+ */
+
+/* الاعتماد على الأنماط العامة من styles.css */
+@import url('styles.css');
+
+/* --- تخطيط الصفحة الرئيسي --- */
+.dashboard-content {
+    padding: var(--spacing-xl) 0 var(--spacing-xxl);
+}
+
+/* الشبكة الرئيسية لصفحة إدارة الأطباء */
+.doctors-management-grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* البحث (1) والجدول (3) */
+    gap: var(--spacing-xl);
+}
+
+/* --- أنماط شارات الحالة (Status Badges) الخاصة بالأطباء --- */
+.status-badge {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-align: center;
+}
+
+.status-available {
+    background-color: rgba(16, 185, 129, 0.15); /* Success Color */
+    color: var(--success-color);
+}
+
+.status-on-leave {
+    background-color: rgba(239, 68, 68, 0.15); /* Danger Color */
+    color: var(--danger-color);
+}
+
+.status-new {
+    background-color: rgba(59, 130, 246, 0.15); /* Primary Color */
+    color: var(--primary-color);
+}
+
+/* --- التجاوبية (Responsive) --- */
+@media (max-width: 1200px) {
+    .doctors-management-grid {
+        grid-template-columns: 1fr; /* عمود واحد على الشاشات الأصغر */
+    }
+    
+    .search-filter-panel {
+        order: 2; /* وضع لوحة البحث أسفل الجدول على الشاشات الصغيرة */
+    }
+    
+    .doctors-table-panel {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-filter-panel form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .search-filter-panel .form-group {
+        margin-bottom: 0;
+    }
+}

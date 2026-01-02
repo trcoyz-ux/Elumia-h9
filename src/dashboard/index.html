@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم الإدارية - نظام الرعاية الصحية</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>جاري تحميل البيانات...</p>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../images/elumia_logo.jpg" alt="شعار النظام" class="logo">
+            <h2>لوحة التحكم</h2>
+            <button class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="nav-item active" data-section="dashboard">
+                    <a href="#dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>الرئيسية</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="users">
+                    <a href="#users">
+                        <i class="fas fa-users"></i>
+                        <span>إدارة المستخدمين</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="appointments">
+                    <a href="#appointments">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>المواعيد</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="consultations">
+                    <a href="#consultations">
+                        <i class="fas fa-stethoscope"></i>
+                        <span>الاستشارات</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="medical-records">
+                    <a href="#medical-records">
+                        <i class="fas fa-file-medical"></i>
+                        <span>السجلات الطبية</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="pharmacy">
+                    <a href="#pharmacy">
+                        <i class="fas fa-pills"></i>
+                        <span>الصيدلية</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="field-teams">
+                    <a href="#field-teams">
+                        <i class="fas fa-ambulance"></i>
+                        <span>الفرق الميدانية</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="payments">
+                    <a href="#payments">
+                        <i class="fas fa-credit-card"></i>
+                        <span>المدفوعات</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="notifications">
+                    <a href="#notifications">
+                        <i class="fas fa-bell"></i>
+                        <span>الإشعارات</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="ai-service">
+                    <a href="#ai-service">
+                        <i class="fas fa-robot"></i>
+                        <span>خدمة الذكاء الاصطناعي</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 id="page-title">الرئيسية</h1>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <input type="text" placeholder="البحث..." id="global-search">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="notifications-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notification-count">3</span>
+                </div>
+                <div class="user-profile">
+                    <img src="../images/elumia_logo.jpg" alt="صورة المستخدم" class="profile-img">
+                    <span>المدير العام</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="content-area">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon users">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-users">0</h3>
+                            <p>إجمالي المستخدمين</p>
+                        </div>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+12%</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon appointments">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-appointments">0</h3>
+                            <p>المواعيد اليوم</p>
+                        </div>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+8%</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon consultations">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-consultations">0</h3>
+                            <p>الاستشارات النشطة</p>
+                        </div>
+                        <div class="stat-trend negative">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>-3%</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon revenue">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-revenue">0</h3>
+                            <p>الإيرادات الشهرية</p>
+                        </div>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+15%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts and Recent Activity -->
+                <div class="dashboard-grid">
+                    <div class="chart-container">
+                        <h3>إحصائيات المواعيد الأسبوعية</h3>
+                        <canvas id="appointmentsChart"></canvas>
+                    </div>
+                    
+                    <div class="recent-activity">
+                        <h3>النشاط الأخير</h3>
+                        <div class="activity-list" id="recent-activity-list">
+                            <!-- Activity items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Users Management Section -->
+            <section id="users-section" class="content-section">
+                <div class="section-header">
+                    <h2>إدارة المستخدمين</h2>
+                    <button class="btn btn-primary" id="add-user-btn">
+                        <i class="fas fa-plus"></i>
+                        إضافة مستخدم جديد
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <div class="table-filters">
+                        <input type="text" placeholder="البحث عن مستخدم..." id="users-search">
+                        <select id="users-filter">
+                            <option value="">جميع المستخدمين</option>
+                            <option value="verified">مُتحقق منه</option>
+                            <option value="unverified">غير مُتحقق منه</option>
+                        </select>
+                    </div>
+                    
+                    <table class="data-table" id="users-table">
+                        <thead>
+                            <tr>
+                                <th>المعرف</th>
+                                <th>اسم المستخدم</th>
+                                <th>البريد الإلكتروني</th>
+                                <th>حالة التحقق</th>
+                                <th>تاريخ التسجيل</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <!-- Users data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Appointments Section -->
+            <section id="appointments-section" class="content-section">
+                <div class="section-header">
+                    <h2>إدارة المواعيد</h2>
+                    <button class="btn btn-primary" id="add-appointment-btn">
+                        <i class="fas fa-plus"></i>
+                        إضافة موعد جديد
+                    </button>
+                </div>
+                
+                <div class="appointments-grid">
+                    <div class="calendar-container">
+                        <h3>التقويم</h3>
+                        <div id="appointments-calendar">
+                            <!-- Calendar will be implemented -->
+                        </div>
+                    </div>
+                    
+                    <div class="appointments-list">
+                        <h3>مواعيد اليوم</h3>
+                        <div id="today-appointments">
+                            <!-- Today's appointments will be populated -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Other sections will be similar structure -->
+            <section id="consultations-section" class="content-section">
+                <div class="section-header">
+                    <h2>إدارة الاستشارات</h2>
+                </div>
+                <div class="consultations-content">
+                    <p>محتوى إدارة الاستشارات سيتم تطويره هنا</p>
+                </div>
+            </section>
+
+            <section id="medical-records-section" class="content-section">
+                <div class="section-header">
+                    <h2>السجلات الطبية</h2>
+                </div>
+                <div class="medical-records-content">
+                    <p>محتوى السجلات الطبية سيتم تطويره هنا</p>
+                </div>
+            </section>
+
+            <section id="pharmacy-section" class="content-section">
+                <div class="section-header">
+                    <h2>إدارة الصيدلية</h2>
+                </div>
+                <div class="pharmacy-content">
+                    <p>محتوى إدارة الصيدلية سيتم تطويره هنا</p>
+                </div>
+            </section>
+
+            <section id="field-teams-section" class="content-section">
+                <div class="section-header">
+                    <h2>الفرق الميدانية</h2>
+                </div>
+                <div class="field-teams-content">
+                    <p>محتوى الفرق الميدانية سيتم تطويره هنا</p>
+                </div>
+            </section>
+
+            <section id="payments-section" class="content-section">
+                <div class="section-header">
+                    <h2>إدارة المدفوعات</h2>
+                </div>
+                <div class="payments-content">
+                    <p>محتوى إدارة المدفوعات سيتم تطويره هنا</p>
+                </div>
+            </section>
+
+            <section id="notifications-section" class="content-section">
+                <div class="section-header">
+                    <h2>إدارة الإشعارات</h2>
+                </div>
+                <div class="notifications-content">
+                    <p>محتوى إدارة الإشعارات سيتم تطويره هنا</p>
+                </div>
+            </section>
+
+            <section id="ai-service-section" class="content-section">
+                <div class="section-header">
+                    <h2>خدمة الذكاء الاصطناعي</h2>
+                </div>
+                <div class="ai-service-content">
+                    <p>محتوى خدمة الذكاء الاصطناعي سيتم تطويره هنا</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div id="user-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="user-modal-title">إضافة مستخدم جديد</h3>
+                <button class="modal-close" id="user-modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="user-form">
+                    <div class="form-group">
+                        <label for="username">اسم المستخدم</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">كلمة المرور</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancel-user">إلغاء</button>
+                        <button type="submit" class="btn btn-primary">حفظ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+

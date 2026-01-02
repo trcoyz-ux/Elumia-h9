@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المواعيد - Elumia-H9</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navbar_updates.css">
+    <link rel="stylesheet" href="appointments.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- شريط التنقل الموحد -->
+    <header class="header" id="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-logo">
+                    <img src="images/new_logo_blue.png" alt="Elumia Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>Elumia-h9</h1>
+                    </div>
+                </div>
+                                <ul class="nav-menu" id="main-nav-menu">
+                    <li><a href="dashboard.html" class="nav-link"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="medical-records.html" class="nav-link"><i class="fas fa-file-medical"></i> السجلات الطبية</a></li>
+                    <li><a href="ai-report-management.html" class="nav-link"><i class="fas fa-robot"></i> تحليل الذكاء الاصطناعي</a></li>
+                    <li><a href="doctor-selection.html" class="nav-link"><i class="fas fa-user-md"></i> اختيار طبيب</a></li>
+                    <li class="dropdown">
+                        <a href="physician-report-management.html" class="nav-link">
+                            <i class="fas fa-file-alt"></i> تقرير الاطباء <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="appointments.html" class="dropdown-item"><i class="fas fa-calendar-check"></i> إدارة المواعيد</a>
+                            <a href="departments_management.html" class="dropdown-item"><i class="fas fa-hospital"></i> إدارة الأقسام</a>
+                            <a href="patients_management.html" class="dropdown-item"><i class="fas fa-users"></i> إدارة المرضى</a>
+                            <a href="doctors_management.html" class="dropdown-item"><i class="fas fa-user-tie"></i> إدارة الأطباء</a>
+                        </div>
+                    </li>
+                    <li><a href="pharmacy-management.html" class="nav-link"><i class="fas fa-pills"></i> ادارة الصيدلية</a></li>
+                    <li><a href="home-care-management.html" class="nav-link"><i class="fas fa-house-medical"></i> الرعاية المنزلية</a></li>
+                    <li><a href="index.html" class="nav-link" id="logout-btn"><i class="fas fa-sign-out-alt"></i> خروج</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="dashboard-content">
+                
+                <!-- قسم الترحيب والعنوان -->
+                <section class="dashboard-header-section">
+                    <div class="welcome-box">
+                        <h1>إدارة المواعيد</h1>
+                        <p>عرض، تعديل، وإلغاء المواعيد المحجوزة مع الأطباء.</p>
+                    </div>
+                </section>
+
+                <!-- المحتوى الرئيسي: جدول المواعيد والبحث -->
+                <div class="appointments-management-grid">
+                    
+                    <!-- 1. البحث والتصفية -->
+                    <div class="panel search-filter-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-filter"></i> البحث والتصفية</h3>
+                        </div>
+                        <form id="searchAppointmentForm">
+                            <div class="form-group">
+                                <label for="searchDoctorName">
+                                    <i class="fas fa-user-md"></i>
+                                    اسم الطبيب:
+                                </label>
+                                <input type="text" id="searchDoctorName" name="searchDoctorName" placeholder="ابحث باسم الطبيب">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="searchDate">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    التاريخ:
+                                </label>
+                                <input type="date" id="searchDate" name="searchDate">
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="searchStatus">
+                                    <i class="fas fa-info-circle"></i>
+                                    الحالة:
+                                </label>
+                                <select id="searchStatus" name="searchStatus">
+                                    <option value="">جميع الحالات</option>
+                                    <option value="confirmed">مؤكد</option>
+                                    <option value="pending">قيد الانتظار</option>
+                                    <option value="completed">مكتمل</option>
+                                    <option value="cancelled">ملغي</option>
+                                </select>
+                            </div>
+        
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                                بحث
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 2. جدول المواعيد -->
+                    <div class="panel appointments-table-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-calendar-check"></i> المواعيد القادمة والسابقة</h3>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table class="records-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>الطبيب</th>
+                                        <th>التخصص</th>
+                                        <th>التاريخ والوقت</th>
+                                        <th>نوع الاستشارة</th>
+                                        <th>الحالة</th>
+                                        <th>الإجراء</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="appointmentsTableBody">
+                                    <!-- بيانات وهمية للتصميم -->
+                                    <tr>
+                                        <td>1</td>
+                                        <td>د. أحمد محمد</td>
+                                        <td>أمراض القلب</td>
+                                        <td>2025-12-20 10:00 ص</td>
+                                        <td>مرئية</td>
+                                        <td><span class="status-badge status-confirmed">مؤكد</span></td>
+                                        <td>
+                                            <button class="btn-small btn-danger"><i class="fas fa-times"></i> إلغاء</button>
+                                            <button class="btn-small btn-info"><i class="fas fa-eye"></i> عرض</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>د. سارة علي</td>
+                                        <td>طب الأطفال</td>
+                                        <td>2025-12-18 02:30 م</td>
+                                        <td>صوتية</td>
+                                        <td><span class="status-badge status-pending">قيد الانتظار</span></td>
+                                        <td>
+                                            <button class="btn-small btn-danger"><i class="fas fa-times"></i> إلغاء</button>
+                                            <button class="btn-small btn-info"><i class="fas fa-eye"></i> عرض</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>د. خالد فهد</td>
+                                        <td>الباطنة</td>
+                                        <td>2025-12-10 09:00 ص</td>
+                                        <td>نصية</td>
+                                        <td><span class="status-badge status-completed">مكتمل</span></td>
+                                        <td>
+                                            <button class="btn-small btn-secondary" disabled><i class="fas fa-check"></i> مكتمل</button>
+                                            <button class="btn-small btn-info"><i class="fas fa-eye"></i> عرض</button>
+                                        </td>
+                                    </tr>
+                                    <!-- سيتم ملء هذا بواسطة JavaScript فعلياً -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ربط ملف JavaScript -->
+    <script src="script.js"></script>
+    <script src="appointments.js"></script>
+</body>
+</html>
