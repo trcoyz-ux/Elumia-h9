@@ -1,0 +1,6 @@
+*.zip
+*.json
+contact_info.txt
+test_firebase.py
+__pycache__/
+.env
