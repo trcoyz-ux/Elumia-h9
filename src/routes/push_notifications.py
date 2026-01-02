@@ -10,20 +10,32 @@ import time
 
 push_notifications_bp = Blueprint("push_notifications", __name__)
 
-# إعداد Firebase Admin SDK
-firebase_config_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'firebase-service-account-corrected.json')
-
 # تهيئة Firebase إذا لم يتم تهيئته مسبقاً
 if not firebase_admin._apps:
     try:
-
+        # محاولة القراءة من متغير البيئة أولاً (للنشر على Render)
+        firebase_creds_json = os.environ.get('FIREBASE_SERVICE_ACCOUNT')
         
-        # تهيئة Firebase
-        cred = credentials.Certificate(firebase_config_path)
-        firebase_admin.initialize_app(cred)
+        if firebase_creds_json:
+            try:
+                creds_dict = json.loads(firebase_creds_json)
+                cred = credentials.Certificate(creds_dict)
+                firebase_admin.initialize_app(cred)
+                print("تمت تهيئة Firebase بنجاح باستخدام متغيرات البيئة.")
+            except Exception as json_err:
+                print(f"خطأ في تحليل JSON لمتغير البيئة FIREBASE_SERVICE_ACCOUNT: {str(json_err)}")
+        else:
+            # المحاولة من الملف المحلي (للتطوير المحلي)
+            firebase_config_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'firebase-service-account-corrected.json')
+            if os.path.exists(firebase_config_path):
+                cred = credentials.Certificate(firebase_config_path)
+                firebase_admin.initialize_app(cred)
+                print("تمت تهيئة Firebase بنجاح باستخدام الملف المحلي.")
+            else:
+                print("تحذير: لم يتم العثور على متغير البيئة FIREBASE_SERVICE_ACCOUNT أو الملف المحلي.")
         
     except Exception as e:
-        print(f"تحذير: لم يتم تهيئة Firebase: {str(e)}")
+        print(f"تحذير: فشل تهيئة Firebase: {str(e)}")
 
 class NotificationManager:
     """مدير الإشعارات المتقدم"""
@@ -290,204 +302,4 @@ def send_notification():
         }), 200
         
     except Exception as e:
-        db.session.rollback()
         return jsonify({"message": f"خطأ في إرسال الإشعار: {str(e)}"}), 500
-
-@push_notifications_bp.route("/schedule", methods=["POST"])
-def schedule_notification():
-    """جدولة إشعار للإرسال لاحقاً"""
-    try:
-        data = request.get_json()
-        
-        required_fields = ['user_ids', 'notification_type', 'message', 'send_time']
-        for field in required_fields:
-            if field not in data:
-                return jsonify({"message": f"الحقل {field} مطلوب"}), 400
-        
-        user_ids = data['user_ids']
-        notification_type = data['notification_type']
-        message = data['message']
-        send_time = datetime.fromisoformat(data['send_time'])
-        notification_data = data.get('data', {})
-        
-        # التحقق من أن الوقت في المستقبل
-        if send_time <= datetime.now():
-            return jsonify({"message": "وقت الإرسال يجب أن يكون في المستقبل"}), 400
-        
-        # جلب رموز FCM (تجريبي)
-        user_tokens = []
-        
-        # جدولة الإشعار
-        result = notification_manager.schedule_notification(
-            user_tokens, notification_type, message, send_time, notification_data
-        )
-        
-        # حفظ الإشعار المجدول في قاعدة البيانات
-        for user_id in user_ids:
-            notification = Notification(
-                user_id=user_id,
-                message=message,
-                notification_type=notification_type,
-                timestamp=send_time,
-                push_sent=False
-            )
-            db.session.add(notification)
-        
-        db.session.commit()
-        
-        return jsonify({
-            "message": "تم جدولة الإشعار",
-            "result": result
-        }), 200
-        
-    except Exception as e:
-        db.session.rollback()
-        return jsonify({"message": f"خطأ في جدولة الإشعار: {str(e)}"}), 500
-
-@push_notifications_bp.route("/bulk", methods=["POST"])
-def send_bulk_notification():
-    """إرسال إشعار جماعي"""
-    try:
-        data = request.get_json()
-        
-        required_fields = ['notification_type', 'message']
-        for field in required_fields:
-            if field not in data:
-                return jsonify({"message": f"الحقل {field} مطلوب"}), 400
-        
-        notification_type = data['notification_type']
-        message = data['message']
-        user_filter = data.get('user_filter', {})
-        notification_data = data.get('data', {})
-        
-        # إرسال الإشعار الجماعي
-        result = notification_manager.send_bulk_notification(
-            notification_type, message, user_filter, notification_data
-        )
-        
-        return jsonify({
-            "message": "تم إرسال الإشعار الجماعي",
-            "result": result
-        }), 200
-        
-    except Exception as e:
-        return jsonify({"message": f"خطأ في الإرسال الجماعي: {str(e)}"}), 500
-
-@push_notifications_bp.route("/user/<int:user_id>/notifications", methods=["GET"])
-def get_user_notifications(user_id):
-    """الحصول على إشعارات المستخدم"""
-    try:
-        page = request.args.get('page', 1, type=int)
-        per_page = request.args.get('per_page', 20, type=int)
-        unread_only = request.args.get('unread_only', 'false').lower() == 'true'
-        
-        query = Notification.query.filter_by(user_id=user_id)
-        
-        if unread_only:
-            query = query.filter_by(is_read=False)
-        
-        notifications = query.order_by(Notification.timestamp.desc()).paginate(
-            page=page,
-            per_page=per_page,
-            error_out=False
-        )
-        
-        notifications_data = []
-        for notification in notifications.items:
-            notifications_data.append({
-                'id': notification.id,
-                'message': notification.message,
-                'notification_type': notification.notification_type,
-                'priority': notification.priority,
-                'timestamp': notification.timestamp.isoformat(),
-                'is_read': notification.is_read,
-                'push_sent': notification.push_sent
-            })
-        
-        return jsonify({
-            "notifications": notifications_data,
-            "pagination": {
-                "page": notifications.page,
-                "pages": notifications.pages,
-                "per_page": notifications.per_page,
-                "total": notifications.total,
-                "has_next": notifications.has_next,
-                "has_prev": notifications.has_prev
-            }
-        }), 200
-        
-    except Exception as e:
-        return jsonify({"message": f"خطأ في جلب الإشعارات: {str(e)}"}), 500
-
-@push_notifications_bp.route("/notification/<int:notification_id>/read", methods=["POST"])
-def mark_notification_read(notification_id):
-    """تعليم الإشعار كمقروء"""
-    try:
-        notification = Notification.query.get(notification_id)
-        if not notification:
-            return jsonify({"message": "الإشعار غير موجود"}), 404
-        
-        notification.is_read = True
-        db.session.commit()
-        
-        return jsonify({"message": "تم تعليم الإشعار كمقروء"}), 200
-        
-    except Exception as e:
-        db.session.rollback()
-        return jsonify({"message": f"خطأ في تحديث الإشعار: {str(e)}"}), 500
-
-@push_notifications_bp.route("/user/<int:user_id>/mark_all_read", methods=["POST"])
-def mark_all_notifications_read(user_id):
-    """تعليم جميع إشعارات المستخدم كمقروءة"""
-    try:
-        notifications = Notification.query.filter_by(user_id=user_id, is_read=False).all()
-        
-        for notification in notifications:
-            notification.is_read = True
-        
-        db.session.commit()
-        
-        return jsonify({
-            "message": f"تم تعليم {len(notifications)} إشعار كمقروء"
-        }), 200
-        
-    except Exception as e:
-        db.session.rollback()
-        return jsonify({"message": f"خطأ في تحديث الإشعارات: {str(e)}"}), 500
-
-@push_notifications_bp.route("/types", methods=["GET"])
-def get_notification_types():
-    """الحصول على أنواع الإشعارات المتاحة"""
-    return jsonify({
-        "notification_types": notification_manager.notification_types
-    }), 200
-
-@push_notifications_bp.route("/statistics", methods=["GET"])
-def get_notification_statistics():
-    """إحصائيات الإشعارات"""
-    try:
-        total_notifications = Notification.query.count()
-        unread_notifications = Notification.query.filter_by(is_read=False).count()
-        push_sent_count = Notification.query.filter_by(push_sent=True).count()
-        
-        # إحصائيات حسب النوع
-        type_stats = db.session.query(
-            Notification.notification_type,
-            db.func.count(Notification.id).label('count')
-        ).group_by(Notification.notification_type).all()
-        
-        type_distribution = [
-            {"type": type_name, "count": count}
-            for type_name, count in type_stats
-        ]
-        
-        return jsonify({
-            "total_notifications": total_notifications,
-            "unread_notifications": unread_notifications,
-            "push_success_rate": (push_sent_count / total_notifications * 100) if total_notifications > 0 else 0,
-            "type_distribution": type_distribution
-        }), 200
-        
-    except Exception as e:
-        return jsonify({"message": f"خطأ في جلب الإحصائيات: {str(e)}"}), 500
-
