@@ -1,0 +1,71 @@
+/* 
+ * departments_management.css - أنماط خاصة بصفحة إدارة الأقسام
+ * تم إنشاؤها لتتوافق مع نظام التصميم الاحترافي الجديد (styles.css)
+ */
+
+/* الاعتماد على الأنماط العامة من styles.css */
+@import url('styles.css');
+
+/* --- تخطيط الصفحة الرئيسي --- */
+.dashboard-content {
+    padding: var(--spacing-xl) 0 var(--spacing-xxl);
+}
+
+/* الشبكة الرئيسية لصفحة إدارة الأقسام */
+.departments-management-grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* البحث (1) والجدول (3) */
+    gap: var(--spacing-xl);
+}
+
+/* --- أنماط شارات الحالة (Status Badges) الخاصة بالأقسام --- */
+.status-badge {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-align: center;
+}
+
+.status-active {
+    background-color: rgba(16, 185, 129, 0.15); /* Success Color */
+    color: var(--success-color);
+}
+
+.status-maintenance {
+    background-color: rgba(245, 158, 11, 0.15); /* Warning Color */
+    color: var(--warning-color);
+}
+
+.status-new {
+    background-color: rgba(59, 130, 246, 0.15); /* Primary Color */
+    color: var(--primary-color);
+}
+
+/* --- التجاوبية (Responsive) --- */
+@media (max-width: 1200px) {
+    .departments-management-grid {
+        grid-template-columns: 1fr; /* عمود واحد على الشاشات الأصغر */
+    }
+    
+    .search-filter-panel {
+        order: 2; /* وضع لوحة البحث أسفل الجدول على الشاشات الصغيرة */
+    }
+    
+    .departments-table-panel {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-filter-panel form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .search-filter-panel .form-group {
+        margin-bottom: 0;
+    }
+}

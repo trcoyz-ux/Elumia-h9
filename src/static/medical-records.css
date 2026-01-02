@@ -1,0 +1,112 @@
+/* 
+ * medical-records.css - أنماط خاصة بصفحة السجلات الطبية
+ * تم تحديثها لتتوافق مع نظام التصميم الاحترافي الجديد (styles.css)
+ */
+
+/* استيراد الأنماط العامة (للتأكد من أن المتصفح يستخدمها) */
+@import url('styles.css');
+
+/* --- تخطيط الصفحة الرئيسي --- */
+/* استخدام نفس التنسيق العام لـ dashboard-content */
+.dashboard-content {
+    padding: var(--spacing-xl) 0 var(--spacing-xxl);
+}
+
+/* الشبكة الرئيسية لصفحة السجلات الطبية (نموذج الرفع والبحث) */
+.medical-records-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* الرفع (1) والبحث (2) */
+    gap: var(--spacing-xl);
+}
+
+/* --- أنماط النموذج والمدخلات --- */
+/* الاعتماد على أنماط form-group و input من styles.css */
+
+/* تحسين مظهر حاوية رفع الملفات */
+.file-upload-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+    background-color: var(--background-lighter);
+    transition: all var(--transition-fast);
+}
+
+.file-upload-container:hover {
+    border-color: var(--primary-light);
+}
+
+.file-upload-container input[type="file"] {
+    display: none;
+}
+
+.file-name {
+    flex-grow: 1;
+    padding: 0 var(--spacing-md);
+    color: var(--text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: var(--font-size-sm);
+}
+
+/* --- أنماط الجدول --- */
+.table-responsive {
+    overflow-x: auto;
+    margin-top: var(--spacing-lg);
+}
+
+.records-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-base);
+}
+
+.records-table thead {
+    background-color: var(--primary-color);
+    color: var(--background-white);
+}
+
+.records-table th {
+    padding: var(--spacing-md);
+    text-align: right;
+    font-weight: 600;
+}
+
+.records-table td {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.records-table tbody tr:hover {
+    background-color: var(--background-lighter);
+}
+
+/* --- التجاوبية (Responsive) --- */
+@media (max-width: 992px) {
+    .medical-records-grid {
+        grid-template-columns: 1fr; /* عمود واحد على الشاشات المتوسطة */
+    }
+}
+
+@media (max-width: 576px) {
+    .file-upload-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .file-name {
+        text-align: center;
+        padding: var(--spacing-sm) 0;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .custom-file-upload {
+        width: 100%;
+        text-align: center;
+    }
+}

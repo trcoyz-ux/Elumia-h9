@@ -1,0 +1,7 @@
+<svg width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+  <rect width="150" height="150" fill="#f8f9fa"/>
+  <circle cx="75" cy="60" r="25" fill="#6c757d"/>
+  <path d="M30 130 Q30 100 75 100 Q120 100 120 130 Z" fill="#6c757d"/>
+  <text x="75" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#495057">طبيب</text>
+</svg>
+

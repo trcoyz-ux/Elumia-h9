@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المرضى - Elumia-H9</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navbar_updates.css">
+    <link rel="stylesheet" href="patients_management.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- شريط التنقل الموحد (يجب أن يكون متضمناً من ملف آخر أو يتم نسخه) -->
+    <header class="header" id="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-logo">
+                    <img src="images/new_logo_blue.png" alt="Elumia Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>Elumia-h9</h1>
+                    </div>
+                </div>
+                                <ul class="nav-menu" id="main-nav-menu">
+                    <li><a href="dashboard.html" class="nav-link"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="medical-records.html" class="nav-link"><i class="fas fa-file-medical"></i> السجلات الطبية</a></li>
+                    <li><a href="ai-report-management.html" class="nav-link"><i class="fas fa-robot"></i> تحليل الذكاء الاصطناعي</a></li>
+                    <li><a href="doctor-selection.html" class="nav-link"><i class="fas fa-user-md"></i> اختيار طبيب</a></li>
+                    <li class="dropdown">
+                        <a href="physician-report-management.html" class="nav-link">
+                            <i class="fas fa-file-alt"></i> تقرير الاطباء <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="appointments.html" class="dropdown-item"><i class="fas fa-calendar-check"></i> إدارة المواعيد</a>
+                            <a href="departments_management.html" class="dropdown-item"><i class="fas fa-hospital"></i> إدارة الأقسام</a>
+                            <a href="patients_management.html" class="dropdown-item"><i class="fas fa-users"></i> إدارة المرضى</a>
+                            <a href="doctors_management.html" class="dropdown-item"><i class="fas fa-user-tie"></i> إدارة الأطباء</a>
+                        </div>
+                    </li>
+                    <li><a href="pharmacy-management.html" class="nav-link"><i class="fas fa-pills"></i> ادارة الصيدلية</a></li>
+                    <li><a href="home-care-management.html" class="nav-link"><i class="fas fa-house-medical"></i> الرعاية المنزلية</a></li>
+                    <li><a href="index.html" class="nav-link" id="logout-btn"><i class="fas fa-sign-out-alt"></i> خروج</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="dashboard-content">
+                
+                <!-- قسم الترحيب والعنوان -->
+                <section class="dashboard-header-section">
+                    <div class="welcome-box">
+                        <h1>إدارة المرضى</h1>
+                        <p>عرض، بحث، وإدارة سجلات المرضى وبياناتهم الأساسية.</p>
+                    </div>
+                </section>
+
+                <!-- المحتوى الرئيسي: لوحة البحث والجدول -->
+                <div class="patients-management-grid">
+                    
+                    <!-- 1. لوحة البحث والتصفية -->
+                    <div class="panel search-filter-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-filter"></i> بحث وتصفية المرضى</h3>
+                        </div>
+                        <form id="searchPatientsForm">
+                            <div class="form-group">
+                                <label for="searchPatientId">
+                                    <i class="fas fa-id-card"></i>
+                                    معرف المريض:
+                                </label>
+                                <input type="text" id="searchPatientId" name="searchPatientId" placeholder="أدخل معرف المريض">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="searchPatientName">
+                                    <i class="fas fa-user"></i>
+                                    اسم المريض:
+                                </label>
+                                <input type="text" id="searchPatientName" name="searchPatientName" placeholder="أدخل اسم المريض">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="searchStatus">
+                                    <i class="fas fa-info-circle"></i>
+                                    الحالة:
+                                </label>
+                                <select id="searchStatus" name="searchStatus">
+                                    <option value="">جميع الحالات</option>
+                                    <option value="active">نشط</option>
+                                    <option value="inactive">غير نشط</option>
+                                    <option value="new">جديد</option>
+                                </select>
+                            </div>
+        
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                                بحث
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="addNewPatientBtn">
+                                <i class="fas fa-plus"></i>
+                                إضافة مريض جديد
+                            </button>
+                        </form>
+                    </div>
+                    <!-- 2. جدول المرضى -->
+                    <div class="panel patients-table-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-users"></i> قائمة المرضى</h3>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table class="records-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>معرف المريض</th>
+                                        <th>الاسم الكامل</th>
+                                        <th>تاريخ الميلاد</th>
+                                        <th>رقم الهاتف</th>
+                                        <th>الحالة</th>
+                                        <th>الإجراء</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="patientsTableBody">
+                                    <!-- بيانات وهمية للتصميم -->
+                                    <tr>
+                                        <td>1</td>
+                                        <td>PAT-00123</td>
+                                        <td>علياء محمد فهد</td>
+                                        <td>1990-05-15</td>
+                                        <td>+966 50 123 4567</td>
+                                        <td><span class="status-badge status-active">نشط</span></td>
+                                        <td>
+                                            <button class="btn-small btn-info"><i class="fas fa-eye"></i> عرض الملف</button>
+                                            <button class="btn-small btn-warning"><i class="fas fa-edit"></i> تعديل</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>PAT-00124</td>
+                                        <td>سالم ناصر العلي</td>
+                                        <td>1985-11-22</td>
+                                        <td>+966 55 987 6543</td>
+                                        <td><span class="status-badge status-inactive">غير نشط</span></td>
+                                        <td>
+                                            <button class="btn-small btn-info"><i class="fas fa-eye"></i> عرض الملف</button>
+                                            <button class="btn-small btn-warning"><i class="fas fa-edit"></i> تعديل</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>PAT-00125</td>
+                                        <td>فاطمة أحمد سعيد</td>
+                                        <td>2001-01-01</td>
+                                        <td>+966 53 111 2222</td>
+                                        <td><span class="status-badge status-new">جديد</span></td>
+                                        <td>
+                                            <button class="btn-small btn-info"><i class="fas fa-eye"></i> عرض الملف</button>
+                                            <button class="btn-small btn-warning"><i class="fas fa-edit"></i> تعديل</button>
+                                        </td>
+                                    </tr>
+                                    <!-- سيتم ملء هذا بواسطة JavaScript فعلياً -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- ربط ملف JavaScript -->
+    <script src="script.js"></script>
+    <!-- سيتم إضافة ملف patients_management.js لاحقاً -->
+</body>
+</html>

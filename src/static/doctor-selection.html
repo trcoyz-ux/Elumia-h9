@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختيار طبيب - Elumia-H9</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navbar_updates.css">
+    <link rel="stylesheet" href="doctor-selection.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- شريط التنقل الموحد -->
+    <header class="header" id="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-logo">
+                    <img src="images/new_logo_blue.png" alt="Elumia Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>Elumia-h9</h1>
+                    </div>
+                </div>
+                <ul class="nav-menu" id="main-nav-menu">
+                    <li><a href="dashboard.html" class="nav-link"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="medical-records.html" class="nav-link"><i class="fas fa-file-medical"></i> السجلات الطبية</a></li>
+                    <li><a href="ai-report-management.html" class="nav-link"><i class="fas fa-robot"></i> تحليل الذكاء الاصطناعي</a></li>
+                    <li><a href="doctor-selection.html" class="nav-link active"><i class="fas fa-user-md"></i> اختيار طبيب</a></li>
+                    <li class="dropdown">
+                        <a href="physician-report-management.html" class="nav-link">
+                            <i class="fas fa-file-alt"></i> تقرير الاطباء <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="appointments.html" class="dropdown-item"><i class="fas fa-calendar-check"></i> إدارة المواعيد</a>
+                            <a href="departments_management.html" class="dropdown-item"><i class="fas fa-hospital"></i> إدارة الأقسام</a>
+                            <a href="patients_management.html" class="dropdown-item"><i class="fas fa-users"></i> إدارة المرضى</a>
+                            <a href="doctors_management.html" class="dropdown-item"><i class="fas fa-user-tie"></i> إدارة الأطباء</a>
+                        </div>
+                    </li>
+                    <li><a href="pharmacy-management.html" class="nav-link"><i class="fas fa-pills"></i> ادارة الصيدلية</a></li>
+                    <li><a href="home-care-management.html" class="nav-link"><i class="fas fa-house-medical"></i> الرعاية المنزلية</a></li>
+                    <li><a href="index.html" class="nav-link" id="logout-btn"><i class="fas fa-sign-out-alt"></i> خروج</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="dashboard-content">
+                
+                <!-- قسم الترحيب والعنوان -->
+                <section class="dashboard-header-section">
+                    <div class="welcome-box">
+                        <h1>اختر طبيبك المناسب</h1>
+                        <p>ابحث عن أفضل الأطباء المتخصصين واحجز استشارتك الآن.</p>
+                    </div>
+                </section>
+
+                <!-- قسم البحث والتصفية -->
+                <div class="panel search-section-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-filter"></i> البحث والتصفية</h3>
+                    </div>
+                    <div class="search-filters">
+                        <div class="form-group search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="doctorSearch" placeholder="ابحث عن طبيب أو تخصص...">
+                        </div>
+                        
+                        <div class="form-group filter-group">
+                            <select id="specializationFilter">
+                                <option value="">جميع التخصصات</option>
+                                <option value="cardiology">أمراض القلب</option>
+                                <option value="dermatology">الأمراض الجلدية</option>
+                                <option value="neurology">الأمراض العصبية</option>
+                                <option value="orthopedics">العظام</option>
+                                <option value="pediatrics">طب الأطفال</option>
+                                <option value="psychiatry">الطب النفسي</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group filter-group">
+                            <select id="ratingFilter">
+                                <option value="">جميع التقييمات</option>
+                                <option value="5">5 نجوم</option>
+                                <option value="4">4 نجوم فأكثر</option>
+                                <option value="3">3 نجوم فأكثر</option>
+                            </select>
+                        </div>
+                        
+                        <button class="btn btn-primary filter-btn" id="applyFiltersBtn">
+                            <i class="fas fa-filter"></i>
+                            تطبيق الفلاتر
+                        </button>
+                    </div>
+                </div>
+
+                <!-- قسم الأطباء المتاحين -->
+                <section class="doctors-section">
+                    <div class="section-header">
+                        <h3>الأطباء المتاحون</h3>
+                        <div class="view-options">
+                            <button class="view-btn active" data-view="grid">
+                                <i class="fas fa-th-large"></i>
+                            </button>
+                            <button class="view-btn" data-view="list">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="doctors-grid" id="doctorsGrid">
+                        <!-- سيتم ملء هذا القسم بواسطة JavaScript -->
+                    </div>
+                    
+                    <div class="load-more">
+                        <button class="btn btn-secondary load-more-btn" id="loadMoreBtn">
+                            <i class="fas fa-plus"></i>
+                            عرض المزيد من الأطباء
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- نافذة تفاصيل الطبيب -->
+    <div class="modal-overlay" id="doctorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalDoctorName">تفاصيل الطبيب</h3>
+                <button class="close-btn" id="closeDoctorModalBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="doctorModalBody">
+                <!-- سيتم ملء المحتوى بواسطة JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="closeDoctorModalFooterBtn">إغلاق</button>
+                <button class="btn btn-primary" id="bookConsultationBtn">حجز استشارة الآن</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة الحجز (خطوات) -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-content booking-modal-content">
+            <div class="modal-header">
+                <h3>حجز موعد جديد</h3>
+                <button class="close-btn" id="closeBookingModalBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="booking-steps">
+                <div class="step active" data-step="1">1</div>
+                <div class="step-line"></div>
+                <div class="step" data-step="2">2</div>
+                <div class="step-line"></div>
+                <div class="step" data-step="3">3</div>
+            </div>
+
+            <div class="modal-body">
+                <!-- الخطوة 1: نوع الاستشارة -->
+                <div class="booking-step-content active" id="step1">
+                    <h4>اختر نوع الاستشارة</h4>
+                    <div class="consultation-types">
+                        <div class="type-card" data-type="text">
+                            <i class="fas fa-comments"></i>
+                            <h5>استشارة نصية</h5>
+                            <p id="textFeeDisplay">75 ر.س</p>
+                        </div>
+                        <div class="type-card" data-type="audio">
+                            <i class="fas fa-phone-alt"></i>
+                            <h5>استشارة صوتية</h5>
+                            <p id="audioFeeDisplay">100 ر.س</p>
+                        </div>
+                        <div class="type-card" data-type="video">
+                            <i class="fas fa-video"></i>
+                            <h5>استشارة فيديو</h5>
+                            <p id="videoFeeDisplay">150 ر.س</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الخطوة 2: اختيار الوقت -->
+                <div class="booking-step-content" id="step2">
+                    <h4>اختر الموعد المناسب</h4>
+                    <div class="date-selector">
+                        <input type="date" id="appointmentDate" min="">
+                    </div>
+                    <div class="time-slots" id="timeSlotsContainer">
+                        <!-- سيتم ملء المواعيد بواسطة JavaScript -->
+                    </div>
+                </div>
+
+                <!-- الخطوة 3: التأكيد -->
+                <div class="booking-step-content" id="step3">
+                    <h4>تأكيد الحجز</h4>
+                    <div class="booking-summary">
+                        <div class="summary-item">
+                            <span>الطبيب:</span>
+                            <strong id="summaryDoctorName">-</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>نوع الاستشارة:</span>
+                            <strong id="summaryType">-</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>التاريخ:</span>
+                            <strong id="summaryDate">-</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>الوقت:</span>
+                            <strong id="summaryTime">-</strong>
+                        </div>
+                        <div class="summary-item total">
+                            <span>الإجمالي:</span>
+                            <strong id="summaryTotal">-</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="prevStepBtn" style="display: none;">السابق</button>
+                <button class="btn btn-secondary" id="cancelBookingBtn">إلغاء</button>
+                <button class="btn btn-primary" id="nextStepBtn">التالي</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="doctor-selection.js"></script>
+</body>
+</html>

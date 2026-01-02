@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - Elumia-h9</title>
+    <!-- ربط ملف الأنماط الجديد -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navbar_updates.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- شريط التنقل الموحد (تم الاحتفاظ به من التصميم الأصلي) -->
+    <header class="header" id="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-logo">
+                    <img src="images/new_logo_blue.png" alt="Elumia Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>Elumia-h9</h1>
+                    </div>
+                </div>
+                <ul class="nav-menu" id="main-nav-menu">
+                    <li><a href="dashboard.html" class="nav-link active"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="medical-records.html" class="nav-link"><i class="fas fa-file-medical"></i> السجلات الطبية</a></li>
+                    <li><a href="ai-report-management.html" class="nav-link"><i class="fas fa-robot"></i> تحليل الذكاء الاصطناعي</a></li>
+                    <li><a href="doctor-selection.html" class="nav-link"><i class="fas fa-user-md"></i> اختيار طبيب</a></li>
+                    <li class="dropdown">
+                        <a href="physician-report-management.html" class="nav-link">
+                            <i class="fas fa-file-alt"></i> تقرير الاطباء <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="appointments.html" class="dropdown-item"><i class="fas fa-calendar-check"></i> إدارة المواعيد</a>
+                            <a href="departments_management.html" class="dropdown-item"><i class="fas fa-hospital"></i> إدارة الأقسام</a>
+                            <a href="patients_management.html" class="dropdown-item"><i class="fas fa-users"></i> إدارة المرضى</a>
+                            <a href="doctors_management.html" class="dropdown-item"><i class="fas fa-user-tie"></i> إدارة الأطباء</a>
+                        </div>
+                    </li>
+                    <li><a href="pharmacy-management.html" class="nav-link"><i class="fas fa-pills"></i> ادارة الصيدلية</a></li>
+                    <li><a href="home-care-management.html" class="nav-link"><i class="fas fa-house-medical"></i> الرعاية المنزلية</a></li>
+                    <li><a href="#" class="nav-link" id="logout-btn"><i class="fas fa-sign-out-alt"></i> خروج</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="dashboard-content">
+                
+                <!-- قسم الترحيب والإحصائيات الرئيسية -->
+                <section class="dashboard-header-section">
+                    <div class="welcome-box">
+                        <h1>مرحباً بك، مستخدم Elumia-h9!</h1>
+                        <p>نظرة عامة على نظامك الصحي والخدمات المتاحة.</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <!-- بطاقة الإحصائيات 1: السجلات الطبية -->
+                        <div class="stat-card">
+                            <i class="fas fa-file-medical stat-icon primary-bg"></i>
+                            <div class="stat-info">
+                                <p class="stat-label">إجمالي السجلات</p>
+                                <h2 class="stat-value">124</h2>
+                            </div>
+                        </div>
+                        
+                        <!-- بطاقة الإحصائيات 2: المواعيد المعلقة (اختيار طبيب) -->
+                        <div class="stat-card">
+                            <i class="fas fa-calendar-check stat-icon success-bg"></i>
+                            <div class="stat-info">
+                                <p class="stat-label">مواعيد اليوم</p>
+                                <h2 class="stat-value">3</h2>
+                            </div>
+                        </div>
+                        
+                        <!-- بطاقة الإحصائيات 3: طلبات الصيدلية (ادارة الصيدلية) -->
+                        <div class="stat-card">
+                            <i class="fas fa-pills stat-icon warning-bg"></i>
+                            <div class="stat-info">
+                                <p class="stat-label">طلبات صيدلية معلقة</p>
+                                <h2 class="stat-value">5</h2>
+                            </div>
+                        </div>
+                        
+                        <!-- بطاقة الإحصائيات 4: تقارير الذكاء الاصطناعي (تحليل الذكاء الاصطناعي) -->
+                        <div class="stat-card">
+                            <i class="fas fa-robot stat-icon accent-bg"></i>
+                            <div class="stat-info">
+                                <p class="stat-label">تحليلات AI مكتملة</p>
+                                <h2 class="stat-value">48</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- قسم لوحة التحكم الرئيسية (ملخصات وأدوات) -->
+                <section class="main-dashboard-grid">
+                    
+                    <!-- 1. ملخص السجلات الطبية الأخيرة -->
+                    <div class="panel medical-records-summary">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-notes-medical"></i> آخر السجلات الطبية</h3>
+                            <a href="medical-records.html" class="view-all-link">عرض الكل</a>
+                        </div>
+                        <ul class="recent-list">
+                            <li>
+                                <span class="list-title">تقرير فحص الدم</span>
+                                <span class="list-date">10 ديسمبر 2025</span>
+                            </li>
+                            <li>
+                                <span class="list-title">وصفة طبية جديدة</span>
+                                <span class="list-date">08 ديسمبر 2025</span>
+                            </li>
+                            <li>
+                                <span class="list-title">ملاحظات زيارة الطبيب (د. أحمد)</span>
+                                <span class="list-date">05 ديسمبر 2025</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 2. الوصول السريع للخدمات (بديل للشبكة القديمة) -->
+                    <div class="panel quick-access-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-th-large"></i> خدمات Elumia-h9</h3>
+                        </div>
+                        <div class="service-links-grid">
+                            <a href="doctor-selection.html" class="service-link-card">
+                                <div class="icon-wrapper"><i class="fas fa-user-md"></i></div>
+                                <span>اختيار طبيب</span>
+                            </a>
+                            <a href="ai-report-management.html" class="service-link-card">
+                                <div class="icon-wrapper"><i class="fas fa-robot"></i></div>
+                                <span>تحليل الذكاء الاصطناعي</span>
+                            </a>
+                            <a href="pharmacy-management.html" class="service-link-card">
+                                <div class="icon-wrapper"><i class="fas fa-pills"></i></div>
+                                <span>ادارة الصيدلية</span>
+                            </a>
+                            <a href="home-care-management.html" class="service-link-card">
+                                <div class="icon-wrapper"><i class="fas fa-house-medical"></i></div>
+                                <span>الرعاية المنزلية</span>
+                            </a>
+                            <a href="physician-report-management.html" class="service-link-card">
+                                <div class="icon-wrapper"><i class="fas fa-file-alt"></i></div>
+                                <span>تقرير الاطباء</span>
+                            </a>
+                            <a href="medical-records.html" class="service-link-card">
+                                <div class="icon-wrapper"><i class="fas fa-file-medical"></i></div>
+                                <span>السجلات الطبية</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 3. حالة الرعاية المنزلية (مثال على لوحة جانبية) -->
+                    <div class="panel home-care-status">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-home"></i> حالة الرعاية المنزلية</h3>
+                        </div>
+                        <div class="status-box">
+                            <p class="status-label">آخر طلب:</p>
+                            <p class="status-value">زيارة تمريضية</p>
+                            <p class="status-label">الحالة:</p>
+                            <span class="status-badge pending">قيد المراجعة</span>
+                            <a href="home-care-management.html" class="btn-small">إدارة الطلبات</a>
+                        </div>
+                    </div>
+
+                    <!-- 4. إحصائيات الأطباء (لوحة بيانية وهمية) -->
+                    <div class="panel physician-stats">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-chart-pie"></i> توزيع الأطباء حسب التخصص</h3>
+                        </div>
+                        <div class="chart-placeholder">
+                            <!-- Placeholder for a chart (e.g., Pie Chart) -->
+                            <p>بيانات بيانية وهمية: 40% باطنية، 30% أسنان، 20% جلدية، 10% أخرى.</p>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ربط ملف JavaScript الجديد -->
+    <script src="script.js"></script>
+</body>
+</html>

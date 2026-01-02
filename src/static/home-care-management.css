@@ -1,0 +1,60 @@
+/* 
+ * home-care-management.css - أنماط خاصة بصفحة إدارة الرعاية المنزلية
+ * تم تحديثها لتتوافق مع نظام التصميم الاحترافي الجديد (styles.css)
+ */
+
+/* الاعتماد على الأنماط العامة من styles.css */
+@import url('styles.css');
+
+/* --- تخطيط الصفحة الرئيسي --- */
+.dashboard-content {
+    padding: var(--spacing-xl) 0 var(--spacing-xxl);
+}
+
+/* الشبكة الرئيسية لصفحة إدارة الرعاية المنزلية */
+.home-care-management-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* الطلب (1) والبحث (2) */
+    gap: var(--spacing-xl);
+}
+
+/* --- أنماط اللوحات --- */
+.panel-description {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px dashed var(--border-color);
+}
+
+/* --- أنماط شارات الحالة (Status Badges) --- */
+.status-badge {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-align: center;
+}
+
+.status-confirmed {
+    background-color: rgba(16, 185, 129, 0.15); /* Success Color */
+    color: var(--success-color);
+}
+
+.status-pending {
+    background-color: rgba(245, 158, 11, 0.15); /* Warning Color */
+    color: var(--warning-color);
+}
+
+.status-cancelled {
+    background-color: rgba(239, 68, 68, 0.15); /* Danger Color */
+    color: var(--danger-color);
+}
+
+/* --- التجاوبية (Responsive) --- */
+@media (max-width: 992px) {
+    .home-care-management-grid {
+        grid-template-columns: 1fr; /* عمود واحد على الشاشات المتوسطة */
+    }
+}

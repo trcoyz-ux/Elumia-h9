@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - Elumia-h9</title>
+    <link rel="stylesheet" href="styles_professional.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- شريط التنقل الموحد -->
+    <header class="header" id="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-logo">
+                    <img src="../images/elumia_logo_full.png" alt="Elumia Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>Elumia-h9</h1>
+                        <p>لوحة التحكم</p>
+                    </div>
+                </div>
+                <ul class="nav-menu" id="main-nav-menu">
+                    <li><a href="dashboard.html" class="nav-link active">الرئيسية</a></li>
+                    <li><a href="../medical-records.html" class="nav-link">السجلات الطبية</a></li>
+                    <li><a href="../ai-report-management.html" class="nav-link">تحليل الذكاء الاصطناعي</a></li>
+                    <li><a href="../doctor-selection.html" class="nav-link">اختيار طبيب</a></li>
+                    <li><a href="../physician-report-management.html" class="nav-link">تقرير الاطباء</a></li>
+                    <li><a href="../pharmacy-management.html" class="nav-link">ادارة الصيدلية</a></li>
+                    <li><a href="../home-care-management.html" class="nav-link">الرعاية المنزلية</a></li>
+                    <li><a href="#" class="nav-link" id="logout-btn">تسجيل الخروج</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- قسم البطل (Hero Section) -->
+            <section class="hero-section">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>مرحباً بك في لوحة تحكم Elumia-h9</h1>
+                        <p>منصة طبية متكاملة لإدارة صحتك بسهولة وأمان</p>
+                    </div>
+                    <div class="hero-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم الإحصائيات السريعة -->
+            <section class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>السجلات الطبية</h3>
+                        <p class="stat-number">12</p>
+                        <span class="stat-label">سجل نشط</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>المواعيد</h3>
+                        <p class="stat-number">3</p>
+                        <span class="stat-label">موعد قادم</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>الأدوية</h3>
+                        <p class="stat-number">8</p>
+                        <span class="stat-label">دواء نشط</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>الأطباء</h3>
+                        <p class="stat-number">5</p>
+                        <span class="stat-label">طبيب معالج</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم الخدمات الرئيسية -->
+            <section class="services-section">
+                <div class="section-header">
+                    <h2>خدماتنا الرئيسية</h2>
+                    <p>الوصول السريع إلى جميع خدماتك الطبية</p>
+                </div>
+
+                <div class="services-grid">
+                    <!-- 1. السجلات الطبية -->
+                    <div class="service-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-file-medical"></i>
+                            </div>
+                            <h3>السجلات الطبية</h3>
+                        </div>
+                        <p class="card-description">راجع وأدر سجلاتك وتقاريرك الطبية بسهولة وأمان.</p>
+                        <a href="../medical-records.html" class="card-button">
+                            <span>اذهب إلى الخدمة</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+
+                    <!-- 2. تحليل الذكاء الاصطناعي -->
+                    <div class="service-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3>تحليل الذكاء الاصطناعي</h3>
+                        </div>
+                        <p class="card-description">تحليل أولي للتقارير الطبية باستخدام تقنيات الذكاء الاصطناعي المتقدمة.</p>
+                        <a href="../ai-report-management.html" class="card-button">
+                            <span>اذهب إلى الخدمة</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+
+                    <!-- 3. اختيار طبيب -->
+                    <div class="service-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h3>اختيار طبيب</h3>
+                        </div>
+                        <p class="card-description">ابحث عن طبيبك المناسب واحجز موعدك بكل سهولة.</p>
+                        <a href="../doctor-selection.html" class="card-button">
+                            <span>اذهب إلى الخدمة</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+
+                    <!-- 4. تقرير الاطباء -->
+                    <div class="service-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>تقرير الاطباء</h3>
+                        </div>
+                        <p class="card-description">إدارة ومراجعة التقارير الصادرة عن الأطباء المعالجين.</p>
+                        <a href="../physician-report-management.html" class="card-button">
+                            <span>اذهب إلى الخدمة</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+
+                    <!-- 5. ادارة الصيدلية -->
+                    <div class="service-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-pills"></i>
+                            </div>
+                            <h3>ادارة الصيدلية</h3>
+                        </div>
+                        <p class="card-description">اطلب أدويتك وتابع حالة طلباتك وتواريخ الاستحقاق.</p>
+                        <a href="../pharmacy-management.html" class="card-button">
+                            <span>اذهب إلى الخدمة</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+
+                    <!-- 6. الرعاية المنزلية -->
+                    <div class="service-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3>الرعاية المنزلية</h3>
+                        </div>
+                        <p class="card-description">اطلب خدمات طبية وتمريضية متخصصة في منزلك.</p>
+                        <a href="../home-care-management.html" class="card-button">
+                            <span>اذهب إلى الخدمة</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم الإجراءات السريعة -->
+            <section class="quick-actions-section">
+                <div class="section-header">
+                    <h2>إجراءات سريعة</h2>
+                </div>
+                <div class="actions-grid">
+                    <button class="action-button" onclick="alert('حجز موعد جديد')">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>حجز موعد جديد</span>
+                    </button>
+                    <button class="action-button" onclick="alert('تحميل تقرير طبي')">
+                        <i class="fas fa-upload"></i>
+                        <span>تحميل تقرير طبي</span>
+                    </button>
+                    <button class="action-button" onclick="alert('طلب دواء جديد')">
+                        <i class="fas fa-prescription-bottle"></i>
+                        <span>طلب دواء جديد</span>
+                    </button>
+                    <button class="action-button" onclick="alert('التواصل مع الدعم')">
+                        <i class="fas fa-headset"></i>
+                        <span>التواصل مع الدعم</span>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Elumia-h9. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Elumia-h9: منصة متكاملة للاستشارات والخدمات الطبية الرقمية">
+    <meta name="theme-color" content="#143464">
+    <title>Elumia-h9 - منصة الرعاية الصحية الرقمية المتكاملة</title>
+    
+    <!-- Updated Professional CSS -->
+    <link rel="stylesheet" href="styles_updated.css">
+    
+    <!-- Cairo Font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Poppins Font for English Text -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Manifest for PWA -->
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Service Worker Script -->
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/static/sw.js")
+                    .then(registration => {
+                        console.log("Service Worker registered: ", registration);
+                    })
+                    .catch(registrationError => {
+                        console.log("Service Worker registration failed: ", registrationError);
+                    });
+            });
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar container">
+            <div class="nav-logo">
+                <img src="images/new_logo_blue.png" alt="Elumia-h9 Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>Elumia-h9</h1>
+                    <p>شبكة الاستشارات والخدمات الطبية</p>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">الرئيسية</a></li>
+                <li><a href="#services" class="nav-link">الخدمات</a></li>
+                <li><a href="#features" class="nav-link">لماذا نحن؟</a></li>
+                <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
+                <li><a href="#login" class="nav-link login-btn">تسجيل الدخول</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container container">
+            <div class="hero-content">
+                <h1 class="hero-title">رعاية صحية رقمية متكاملة</h1>
+                <p class="hero-subtitle">
+                    منصة Elumia-h9 تجمع بين الابتكار التكنولوجي والخبرة الطبية لتقديم خدمات صحية شاملة وآمنة. استشارات طبية فورية، حجز مواعيد سهل، وإدارة سجلات صحية موثوقة.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary">اكتشف خدماتنا</a>
+                    <a href="#login" class="btn btn-secondary">ابدأ الآن</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-card">
+                    <i class="fas fa-stethoscope"></i>
+                    <h3>استشارة طبية فورية</h3>
+                    <p>تواصل مع أطبائنا المتخصصين من أي مكان وفي أي وقت.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>خدماتنا الأساسية</h2>
+                <p>نقدم مجموعة شاملة من الحلول الطبية الرقمية المتطورة لراحتك وسلامتك.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Service 1: الاستشارات الطبية -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-video"></i></div>
+                    <h3>استشارات متخصصة</h3>
+                    <p>تواصل مباشر مع نخبة من الأطباء المتخصصين عبر الفيديو أو الدردشة النصية بكل أمان وسرية.</p>
+                </div>
+                
+                <!-- Service 2: السجلات الطبية -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-file-medical-alt"></i></div>
+                    <h3>سجلات طبية آمنة</h3>
+                    <p>إدارة وحفظ جميع تقاريرك والوصفات الطبية في مكان واحد بأعلى معايير الأمان والتشفير.</p>
+                </div>
+                
+                <!-- Service 3: حجز المواعيد -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-calendar-check"></i></div>
+                    <h3>حجز مواعيد سهل</h3>
+                    <p>اختر طبيبك وحدد موعدك المناسب في ثوانٍ معدودة مع نظام تنبيهات ذكي.</p>
+                </div>
+                
+                <!-- Service 4: الصيدلية -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-pills"></i></div>
+                    <h3>خدمة الصيدلية الرقمية</h3>
+                    <p>اطلب أدويتك من خلال وصفة طبية رقمية وتسلمها مباشرة إلى باب منزلك.</p>
+                </div>
+                
+                <!-- Service 5: الذكاء الاصطناعي -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-brain"></i></div>
+                    <h3>تحليل بالذكاء الاصطناعي</h3>
+                    <p>تحليل أولي للتقارير الطبية والصور باستخدام أحدث تقنيات الذكاء الاصطناعي الطبي.</p>
+                </div>
+                
+                <!-- Service 6: الزيارات المنزلية -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-home"></i></div>
+                    <h3>رعاية منزلية متخصصة</h3>
+                    <p>خدمات طبية وتمريضية متخصصة تصل إليك في منزلك بكل احترافية وأمان.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="features-content">
+                <div class="features-text">
+                    <h2>لماذا تختار Elumia-h9؟</h2>
+                    
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h4>أمان وخصوصية متفوقة</h4>
+                            <p>نستخدم تشفيرًا متقدمًا من الدرجة العسكرية لحماية بياناتك الصحية وضمان سريتها التامة وفقًا للمعايير الدولية.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>متاح 24/7 طوال العام</h4>
+                            <p>خدماتنا الطبية والاستشارية متاحة لك في أي وقت ومن أي مكان دون انقطاع أو تأخير.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <h4>جودة طبية معتمدة</h4>
+                            <p>جميع الأطباء والخدمات لدينا معتمدون ومرخصون لضمان أعلى مستويات الرعاية الطبية والاحترافية.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div>
+                            <h4>تطبيق محمول متقدم</h4>
+                            <p>تطبيق سهل الاستخدام متوفر على iOS و Android يوفر تجربة سلسة وسريعة.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="features-image">
+                    <img src="images/new_logo_blue.png" alt="Elumia-h9 Features" class="features-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2>تسجيل الدخول</h2>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">اسم المستخدم أو البريد الإلكتروني</label>
+                    <input type="text" id="username" name="username" placeholder="أدخل اسم المستخدم" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">دخول</button>
+                <p class="register-link">ليس لديك حساب؟ <a href="#" id="showRegister">سجل الآن</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2>إنشاء حساب جديد</h2>
+            </div>
+            <form id="registerForm" class="login-form">
+                <div class="form-group">
+                    <label for="regUsername">اسم المستخدم</label>
+                    <input type="text" id="regUsername" name="username" placeholder="اختر اسم مستخدم" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">البريد الإلكتروني</label>
+                    <input type="email" id="regEmail" name="email" placeholder="أدخل بريدك الإلكتروني" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">كلمة المرور</label>
+                    <input type="password" id="regPassword" name="password" placeholder="اختر كلمة مرور قوية" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">إنشاء حساب</button>
+                <p class="register-link">لديك حساب؟ <a href="#" id="showLogin">سجل الدخول</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/new_logo_blue.png" alt="Elumia-h9 Logo" class="logo-img">
+                        <div class="logo-text">
+                            <h1>Elumia-h9</h1>
+                            <p>شبكة الاستشارات والخدمات الطبية</p>
+                        </div>
+                    </div>
+                    <p>منصة متكاملة للاستشارات والخدمات الطبية تهدف إلى تسهيل الوصول للرعاية الصحية الجودة والموثوقة.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#services">الخدمات</a></li>
+                        <li><a href="#features">لماذا نحن؟</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-globe"></i> https://elumia-h9.com</p>
+                        <p><i class="fab fa-facebook"></i> www.facebook.com/elumia-h9</p>
+                        <p><i class="fab fa-whatsapp"></i> +967 771 676 334</p>
+                        <p><i class="fas fa-envelope"></i> support@elumia-h9.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Elumia-h9. جميع الحقوق محفوظة. | <a href="#">سياسة الخصوصية</a> | <a href="#">شروط الاستخدام</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Navigation Active Link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Modal Functionality
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const loginBtn = document.querySelector('.login-btn');
+        const showRegisterLink = document.getElementById('showRegister');
+        const showLoginLink = document.getElementById('showLogin');
+        const closeBtns = document.querySelectorAll('.close');
+
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.add('show');
+        });
+
+        showRegisterLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.remove('show');
+            registerModal.classList.add('show');
+        });
+
+        showLoginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.classList.remove('show');
+            loginModal.classList.add('show');
+        });
+
+        closeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                loginModal.classList.remove('show');
+                registerModal.classList.remove('show');
+            });
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.remove('show');
+            }
+            if (e.target === registerModal) {
+                registerModal.classList.remove('show');
+            }
+        });
+
+        // Form Submission
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('تم تسجيل الدخول بنجاح!');
+            loginModal.classList.remove('show');
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('تم إنشاء الحساب بنجاح!');
+            registerModal.classList.remove('show');
+        });
+    </script>
+</body>
+</html>

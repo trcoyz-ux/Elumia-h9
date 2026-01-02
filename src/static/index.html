@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elumia-h9 | الرعاية الصحية في عصرها الجديد</title>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="premium_style.css">
+    
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="nav-logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-plus" style="color: white; font-size: 1.2rem;"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h2>Elumia<span style="color: var(--primary);">h9</span></h2>
+                    </div>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">الرئيسية</a></li>
+                    <li><a href="#services" class="nav-link">الخدمات</a></li>
+                    <li><a href="#tech" class="nav-link">التقنيات</a></li>
+                    <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
+                </ul>
+
+                <a href="#login" class="nav-cta login-btn">تسجيل الدخول</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2>تسجيل الدخول</h2>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">اسم المستخدم أو البريد الإلكتروني</label>
+                    <input type="text" id="username" name="username" placeholder="أدخل اسم المستخدم" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;">دخول</button>
+                <p class="register-link">ليس لديك حساب؟ <a href="#" id="showRegister">سجل الآن</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2>إنشاء حساب جديد</h2>
+            </div>
+            <form id="registerForm" class="login-form">
+                <div class="form-group">
+                    <label for="regUsername">اسم المستخدم</label>
+                    <input type="text" id="regUsername" name="username" placeholder="اختر اسم مستخدم" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">البريد الإلكتروني</label>
+                    <input type="email" id="regEmail" name="email" placeholder="أدخل بريدك الإلكتروني" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">كلمة المرور</label>
+                    <input type="password" id="regPassword" name="password" placeholder="اختر كلمة مرور قوية" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;">إنشاء حساب</button>
+                <p class="register-link">لديك حساب؟ <a href="#" id="showLogin">سجل الدخول</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg-glow"></div>
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-tag">الجيل القادم من الرعاية الصحية</span>
+                <h1 class="hero-title gradient-text">
+                    مستقبل الرعاية<br>
+                    <span class="blue-gradient">بين يديك الآن</span>
+                </h1>
+                <p class="hero-desc">
+                    اختبر التكامل المثالي بين الخبرة الطبية والذكاء الاصطناعي. Elumia-h9 تقدم لك منصة رعاية صحية شاملة، آمنة، وفورية أينما كنت في العالم.
+                </p>
+                <div class="hero-actions">
+                    <a href="#services" class="btn btn-primary">اكتشف خدماتنا</a>
+                    <a href="#login" class="btn btn-secondary">ابدأ رحلتك الآن</a>
+                </div>
+                
+                <div class="showcase">
+                    <img src="images/hero_bg.png" alt="Elumia Platform Showcase">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="container">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-val blue-gradient">+1M</span>
+                <span class="stat-label">استشارة طبية</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-val blue-gradient">98%</span>
+                <span class="stat-label">رضا العملاء</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-val blue-gradient">+50</span>
+                <span class="stat-label">تخصص طبي</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-val blue-gradient">24/7</span>
+                <span class="stat-label">دعم متواصل</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="gradient-text">خدماتنا المتكاملة</h2>
+                <p style="color: var(--text-mid); font-size: 1.2rem;">حلول ذكية مصممة لتلبية احتياجاتك الصحية بأعلى معايير الجودة العالمية</p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-user-md"></i></div>
+                    <h3>استشارات متخصصة</h3>
+                    <p>تواصل مباشر مع نخبة من الأطباء في مختلف التخصصات عبر الفيديو أو الدردشة الفورية المشفرة.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-brain"></i></div>
+                    <h3>تحليل ذكي (AI)</h3>
+                    <p>استخدم تقنيات الذكاء الاصطناعي المتقدمة للحصول على تحليل أولي دقيق لتقاريرك الطبية وصورك الإشعاعية.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-file-medical"></i></div>
+                    <h3>سجلات رقمية آمنة</h3>
+                    <p>إدارة وحفظ جميع بياناتك الصحية في مكان واحد مشفر وسهل الوصول إليه من أي جهاز في العالم.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-pills"></i></div>
+                    <h3>الصيدلية الذكية</h3>
+                    <p>اطلب أدويتك وتتبع وصفتك الطبية مع خدمة التوصيل السريع والآمن مباشرة إلى باب منزلك.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-house-medical"></i></div>
+                    <h3>رعاية منزلية</h3>
+                    <p>خدمات تمريضية وطبية متخصصة تصل إليك في منزلك لضمان راحتك وسلامتك بأعلى المعايير.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-calendar-check"></i></div>
+                    <h3>حجز فوري ذكي</h3>
+                    <p>نظام حجز مواعيد متطور يضمن لك أقل وقت انتظار وأفضل تنسيق مع طبيبك المفضل.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Feature Section -->
+    <section id="tech" class="section-padding">
+        <div class="container">
+            <div class="tech-feature">
+                <div class="tech-info">
+                    <span class="hero-tag" style="color: var(--accent-2);">تقنيات المستقبل</span>
+                    <h2 class="hero-title" style="font-size: 3rem; margin-top: 20px;">الذكاء الاصطناعي<br>في خدمة صحتك</h2>
+                    <p style="color: var(--text-mid); font-size: 1.1rem; margin-bottom: 30px;">
+                        نحن ندمج أحدث تقنيات التعلم العميق والتحليل البياني لتوفير تشخيصات أسرع وأكثر دقة. من الجراحة الروبوتية إلى الطب الجيني المخصص، نحن نصنع مستقبل الرعاية الصحية اليوم.
+                    </p>
+                    <ul style="list-style: none; color: var(--text-high);">
+                        <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color: var(--primary); margin-left: 10px;"></i> تشخيص مدعوم بالذكاء الاصطناعي</li>
+                        <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color: var(--primary); margin-left: 10px;"></i> مراقبة حيوية مستمرة (IoT)</li>
+                        <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color: var(--primary); margin-left: 10px;"></i> تشفير بيانات بمعايير عسكرية</li>
+                    </ul>
+                </div>
+                <div class="tech-visual">
+                    <img src="images/neuro_ai.png" alt="AI Medical Tech" class="tech-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="nav-logo" style="margin-bottom: 20px;">
+                        <div class="logo-icon">
+                            <i class="fas fa-plus" style="color: white;"></i>
+                        </div>
+                        <h2>Elumia<span style="color: var(--primary);">h9</span></h2>
+                    </div>
+                    <p class="footer-desc">
+                        المنصة الرائدة عالمياً في تقديم الخدمات الطبية الرقمية المتكاملة. نجمع بين التكنولوجيا والخبرة البشرية لرعاية أفضل.
+                    </p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>المنصة</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#services">الخدمات</a></li>
+                        <li><a href="#tech">التقنيات</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>الدعم</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">مركز المساعدة</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>تواصل معنا</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope" style="margin-left: 10px; color: var(--primary);"></i> h9w2aet@gmail.com</li>
+                        <li><i class="fas fa-phone" style="margin-left: 10px; color: var(--primary);"></i> +967 771 676 334</li>
+                        <li><i class="fas fa-location-dot" style="margin-left: 10px; color: var(--primary);"></i> صنعاء، اليمن</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Elumia-h9. جميع الحقوق محفوظة.</p>
+                <div class="socials">
+                    <a href="#" style="color: var(--text-low); margin-right: 20px;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" style="color: var(--text-low); margin-right: 20px;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" style="color: var(--text-low); margin-right: 20px;"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

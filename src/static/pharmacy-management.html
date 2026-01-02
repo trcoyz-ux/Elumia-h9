@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الصيدلية - Elumia-H9</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navbar_updates.css">
+    <link rel="stylesheet" href="pharmacy-management.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- شريط التنقل الموحد -->
+    <header class="header" id="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-logo">
+                    <img src="images/new_logo_blue.png" alt="Elumia Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>Elumia-h9</h1>
+                    </div>
+                </div>
+                                <ul class="nav-menu" id="main-nav-menu">
+                    <li><a href="dashboard.html" class="nav-link"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="medical-records.html" class="nav-link"><i class="fas fa-file-medical"></i> السجلات الطبية</a></li>
+                    <li><a href="ai-report-management.html" class="nav-link"><i class="fas fa-robot"></i> تحليل الذكاء الاصطناعي</a></li>
+                    <li><a href="doctor-selection.html" class="nav-link"><i class="fas fa-user-md"></i> اختيار طبيب</a></li>
+                    <li class="dropdown">
+                        <a href="physician-report-management.html" class="nav-link">
+                            <i class="fas fa-file-alt"></i> تقرير الاطباء <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="appointments.html" class="dropdown-item"><i class="fas fa-calendar-check"></i> إدارة المواعيد</a>
+                            <a href="departments_management.html" class="dropdown-item"><i class="fas fa-hospital"></i> إدارة الأقسام</a>
+                            <a href="patients_management.html" class="dropdown-item"><i class="fas fa-users"></i> إدارة المرضى</a>
+                            <a href="doctors_management.html" class="dropdown-item"><i class="fas fa-user-tie"></i> إدارة الأطباء</a>
+                        </div>
+                    </li>
+                    <li><a href="pharmacy-management.html" class="nav-link active"><i class="fas fa-pills"></i> ادارة الصيدلية</a></li>
+                    <li><a href="home-care-management.html" class="nav-link"><i class="fas fa-house-medical"></i> الرعاية المنزلية</a></li>
+                    <li><a href="index.html" class="nav-link" id="logout-btn"><i class="fas fa-sign-out-alt"></i> خروج</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="dashboard-content">
+                
+                <!-- قسم الترحيب والعنوان -->
+                <section class="dashboard-header-section">
+                    <div class="welcome-box">
+                        <h1>إدارة الصيدلية وطلبات الأدوية</h1>
+                        <p>إدارة طلبات الأدوية المعتمدة من الأطباء وتتبع حالة التوصيل.</p>
+                    </div>
+                </section>
+
+                <!-- المحتوى الرئيسي: نموذج الطلب والبحث -->
+                <div class="pharmacy-management-grid">
+                    
+                    <!-- 1. إنشاء طلب دواء -->
+                    <div class="panel create-request-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-prescription-bottle-alt"></i> إنشاء طلب دواء جديد</h3>
+                        </div>
+                        <p class="panel-description">قم بإنشاء طلب دواء جديد عن طريق إدخال معرف الاستشارة ورفع الروشتة المعتمدة.</p>
+                        <form id="createDrugRequestForm">
+                            <div class="form-group">
+                                <label for="consultationId">
+                                    <i class="fas fa-id-card"></i>
+                                    معرف الاستشارة:
+                                </label>
+                                <input type="text" id="consultationId" name="consultationId" required placeholder="أدخل معرف الاستشارة">
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="doctorReportFile">
+                                    <i class="fas fa-file-medical"></i>
+                                    روشتة العلاج (ملف):
+                                </label>
+                                <div class="file-upload-container">
+                                    <input type="file" id="doctorReportFile" name="doctorReportFile" style="display: none;">
+                                    <span class="file-name" id="reportFileNameDisplay">لم يتم اختيار ملف</span>
+                                    <label for="doctorReportFile" class="btn btn-secondary custom-file-upload">
+                                        <i class="fas fa-file-upload"></i>
+                                        رفع الروشتة
+                                    </label>
+                                </div>
+                            </div>
+        
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus-circle"></i>
+                                إنشاء طلب
+                            </button>
+                            <p id="createMessage" class="message-area"></p>
+                        </form>
+                    </div>
+
+                    <!-- 2. البحث في الطلبات ونتائج البحث -->
+                    <div class="panel search-results-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-search"></i> سجل طلبات الأدوية</h3>
+                        </div>
+                        <form id="searchDrugRequestForm">
+                            <div class="form-group">
+                                <label for="searchConsultationId">
+                                    <i class="fas fa-id-card"></i>
+                                    معرف الاستشارة:
+                                </label>
+                                <input type="text" id="searchConsultationId" name="searchConsultationId" required placeholder="أدخل معرف الاستشارة للبحث">
+                            </div>
+        
+                            <button type="submit" class="btn btn-secondary">
+                                <i class="fas fa-search"></i>
+                                بحث
+                            </button>
+                            <p id="searchMessage" class="message-area"></p>
+                        </form>
+        
+                        <!-- نتائج البحث -->
+                        <div id="searchResults" class="search-results-container" style="display: block;">
+                            <div class="panel-header">
+                                <h4>آخر الطلبات:</h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="records-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>معرف الطلب</th>
+                                            <th>معرف الاستشارة</th>
+                                            <th>تاريخ الطلب</th>
+                                            <th>الحالة</th>
+                                            <th>الإجراء</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="requestsTableBody">
+                                        <!-- بيانات وهمية للتصميم -->
+                                        <tr>
+                                            <td>1</td>
+                                            <td>DR-00123</td>
+                                            <td>CONS-456</td>
+                                            <td>2025-12-12</td>
+                                            <td><span class="status-badge status-executed">تم التنفيذ</span></td>
+                                            <td><a href="#" class="btn-small btn-info"><i class="fas fa-eye"></i> عرض</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>DR-00124</td>
+                                            <td>CONS-457</td>
+                                            <td>2025-12-11</td>
+                                            <td><span class="status-badge status-pending">قيد المراجعة</span></td>
+                                            <td><a href="#" class="btn-small btn-warning"><i class="fas fa-sync-alt"></i> تحديث</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>DR-00125</td>
+                                            <td>CONS-458</td>
+                                            <td>2025-12-10</td>
+                                            <td><span class="status-badge status-rejected">مرفوض</span></td>
+                                            <td><a href="#" class="btn-small btn-danger"><i class="fas fa-trash"></i> حذف</a></td>
+                                        </tr>
+                                        <!-- سيتم ملء هذا بواسطة JavaScript فعلياً -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ربط ملف JavaScript -->
+    <script src="script.js"></script>
+    <script src="pharmacy-management.js"></script>
+    <script>
+        // JavaScript بسيط لعرض اسم الملف المرفوع
+        document.getElementById('doctorReportFile').addEventListener('change', function() {
+            var fileName = this.files[0] ? this.files[0].name : 'لم يتم اختيار ملف';
+            document.getElementById('reportFileNameDisplay').textContent = fileName;
+        });
+    </script>
+</body>
+</html>
