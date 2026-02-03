@@ -1,0 +1,501 @@
+/*
+ * ملف styles_unified.css - نظام أنماط موحد احترافي لـ Elumia-h9
+ * يتضمن الألوان والمكونات الأساسية لجميع الصفحات
+ */
+
+:root {
+    /* الألوان الأساسية */
+    --primary-color: #1A4D8C;           /* أزرق داكن */
+    --secondary-color: #0077C8;         /* أزرق متوسط */
+    --accent-color: #00A8E8;            /* أزرق فاتح */
+    --background-color: #E6F0F8;        /* أزرق فاتح جداً */
+    --card-background: #FFFFFF;         /* أبيض */
+    --text-color: #5A6A7B;              /* رمادي داكن */
+    --light-text-color: #A9B3BD;        /* رمادي/معدني */
+    --border-color: #D4DDE6;            /* رمادي فاتح */
+    --success-color: #28A745;           /* أخضر */
+    --warning-color: #FFC107;           /* أصفر */
+    --danger-color: #DC3545;            /* أحمر */
+    
+    /* الظلال */
+    --shadow-light: 0 2px 8px rgba(26, 77, 140, 0.08);
+    --shadow-medium: 0 4px 16px rgba(26, 77, 140, 0.12);
+    --shadow-hover: 0 8px 24px rgba(26, 77, 140, 0.16);
+    
+    /* التدرجات */
+    --gradient-primary: linear-gradient(135deg, #1A4D8C 0%, #0077C8 100%);
+}
+
+/* الأنماط الأساسية */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    direction: rtl;
+    text-align: right;
+    padding-top: 70px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* شريط التنقل (Header/Navbar) */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--card-background);
+    box-shadow: var(--shadow-light);
+    z-index: 1000;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    max-height: 50px;
+    width: auto;
+}
+
+.logo-text h1 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin: 0;
+    font-weight: 800;
+}
+
+.logo-text p {
+    font-size: 0.75rem;
+    color: var(--light-text-color);
+    margin: 0;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--secondary-color);
+    background-color: rgba(0, 119, 200, 0.05);
+}
+
+/* المحتوى الرئيسي */
+main {
+    padding: 40px 0;
+}
+
+/* البطاقات (Cards) */
+.card {
+    background: var(--card-background);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: var(--shadow-light);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: var(--secondary-color);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.card-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--gradient-primary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    margin: 0;
+}
+
+/* الأزرار */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.btn-secondary {
+    background: var(--accent-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: var(--secondary-color);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.btn-outline:hover {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.btn-success {
+    background: var(--success-color);
+    color: white;
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: white;
+}
+
+.btn-warning {
+    background: var(--warning-color);
+    color: white;
+}
+
+/* الجداول */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table thead {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+}
+
+.table th {
+    padding: 15px;
+    text-align: right;
+    font-weight: 700;
+}
+
+.table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table tbody tr:hover {
+    background-color: rgba(0, 119, 200, 0.05);
+}
+
+/* نماذج الإدخال */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(0, 119, 200, 0.1);
+}
+
+/* التنبيهات */
+.alert {
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.alert-success {
+    background-color: rgba(40, 167, 69, 0.1);
+    border-left: 4px solid var(--success-color);
+    color: var(--success-color);
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-left: 4px solid var(--danger-color);
+    color: var(--danger-color);
+}
+
+.alert-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    border-left: 4px solid var(--warning-color);
+    color: var(--warning-color);
+}
+
+.alert-info {
+    background-color: rgba(0, 119, 200, 0.1);
+    border-left: 4px solid var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+/* الشريط الجانبي */
+.sidebar {
+    background: var(--card-background);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow-light);
+    border: 1px solid var(--border-color);
+}
+
+.sidebar-item {
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.sidebar-item:hover,
+.sidebar-item.active {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+.sidebar-item i {
+    font-size: 0.9rem;
+}
+
+/* الشبكات */
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* الشارات (Badges) */
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-primary {
+    background-color: rgba(26, 77, 140, 0.1);
+    color: var(--primary-color);
+}
+
+.badge-success {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--success-color);
+}
+
+.badge-danger {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--danger-color);
+}
+
+.badge-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: var(--warning-color);
+}
+
+/* الهامبرغر */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.bar {
+    width: 30px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* استجابة التصميم */
+@media (max-width: 992px) {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 65px;
+        right: 0;
+        width: 100%;
+        background-color: var(--card-background);
+        box-shadow: var(--shadow-medium);
+        padding: 10px 0;
+        gap: 0;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu li {
+        text-align: center;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+    }
+
+    .container {
+        width: 95%;
+    }
+
+    .navbar {
+        padding: 10px 0;
+    }
+
+    .logo-img {
+        max-height: 40px;
+    }
+
+    .logo-text h1 {
+        font-size: 0.9rem;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+
+    .table {
+        font-size: 0.9rem;
+    }
+}
