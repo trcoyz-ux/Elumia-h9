@@ -25,7 +25,7 @@
 }
 
 .nav-link i {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--primary-light);
 }
 
@@ -81,7 +81,7 @@
     align-items: center;
     gap: 12px;
     transition: background-color 0.2s ease;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     border-bottom: 1px solid #f0f0f0;
 }
 
@@ -93,7 +93,7 @@
     width: 20px;
     text-align: center;
     color: var(--primary-light);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
 }
 
 .dropdown-item:hover {
@@ -194,7 +194,7 @@
 .service-link-card span {
     font-weight: 700;
     color: var(--text-primary);
-    font-size: 0.95rem;
+    font-size: 0.85rem;
 }
 
 /* تحسينات إضافية للهاتف المحمول */
