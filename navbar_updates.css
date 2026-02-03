@@ -81,7 +81,7 @@
     align-items: center;
     gap: 12px;
     transition: background-color 0.2s ease;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     border-bottom: 1px solid #f0f0f0;
 }
 
@@ -107,7 +107,7 @@
 
 /* سهم القائمة المنسدلة */
 .nav-link .fa-chevron-down {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     margin-right: 5px;
     transition: transform 0.3s ease;
 }
@@ -166,8 +166,8 @@
 }
 
 .icon-wrapper {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     background-color: var(--secondary-color);
     border-radius: 14px;
     display: flex;
@@ -177,7 +177,7 @@
 }
 
 .service-link-card i {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: var(--primary-color);
     transition: all 0.3s ease;
 }
@@ -194,7 +194,7 @@
 .service-link-card span {
     font-weight: 700;
     color: var(--text-primary);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
 }
 
 /* تحسينات إضافية للهاتف المحمول */

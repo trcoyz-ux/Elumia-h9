@@ -26,3 +26,24 @@ sandbox.txt
 *.json
 contact_info.txt
 test_firebase.py
+
+# Environments
+venv.bak/
+env.bak/
+
+# OS files
+.DS_Store
+
+# IDE files
+*.swp
+*.swo
+
+# Project specific
+instance/
+dist/
+build/
+*.egg-info/
+
+# Database
+*.db
+*.sqlite3
